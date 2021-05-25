@@ -1,0 +1,150 @@
+.container {
+  max-width: 1400px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.box {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  &-wrapper {
+    display: flex;
+  }
+}
+
+.box-white {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.breeds__search {
+  position: relative;
+  width: 65%;
+  height: 60px;
+  input {
+    width: 100%;
+    height: 100%;
+    font-family: 'Jost', sans-serif;
+    background: #ffffff;
+    border-radius: 20px;
+    font-size: 20px;
+    padding: 15px 20px;
+    outline: none;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    &::placeholder {
+      font-family: 'Jost', sans-serif;
+      font-size: 20px;
+      color: #8c8c8c;
+    }
+    &:hover {
+      border-color: #fbe0dc;
+    }
+    &:focus {
+      border-color: #ff868e;
+    }
+  }
+  button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: #fbe0dc;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+  width: 35%;
+  margin-left: 5px;
+  &-btn {
+    width: 60px;
+    height: 60px;
+    background: #ffffff;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: all 0.2s ease;
+    svg {
+      path {
+        transition: all 0.2s ease;
+      }
+    }
+    &:hover {
+      background-color: #fbe0dc;
+    }
+    &:active {
+      background-color: #ff868e;
+      svg {
+        path {
+          fill: #fff;
+        }
+      }
+    }
+  }
+}
+
+.top {
+  margin-bottom: 20px;
+}
+.back {
+  margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  background: #fbe0dc;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  svg {
+    path {
+      transition: all 0.2s ease;
+    }
+  }
+  &:active {
+    background-color: #ff868e;
+    svg {
+      path {
+        fill: #fff;
+      }
+    }
+  }
+}
+
+.top {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  height: 40px;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: 500;
+  font-size: 20px;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 5px 30px;
+  cursor: pointer;
+  border: none;
+  background: #ff868e;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  &:hover {
+    background: #fbe0dc;
+    color: #ff868e;
+  }
+}
