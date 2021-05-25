@@ -7,7 +7,7 @@ import galleryPng from './assets/img/images-search.png';
 
 import { Link, Route } from 'react-router-dom';
 import { Promo } from './components';
-import { VotePage } from './pages';
+import { BreedsPage, VotePage } from './pages';
 
 const menuArr = [
   { id: 1, title: 'Voting', img: voteTablePng, color: '#B4B7FF', link: 'vote' },
@@ -53,6 +53,7 @@ function App() {
           <div className="right-section">
             <Route path="/" component={Promo} exact />
             <Route path="/vote" component={VotePage} />
+            <Route path="/breeds" component={BreedsPage} />
           </div>
         </div>
       </div>

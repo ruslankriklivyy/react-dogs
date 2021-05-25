@@ -8,6 +8,9 @@
   &-dog {
     &__img {
       position: relative;
+      img {
+        height: 360px;
+      }
     }
   }
   &-actions {
@@ -37,6 +40,40 @@
         path {
           fill: #fff;
         }
+      }
+    }
+  }
+  &-history {
+    margin-top: 50px;
+    &__item {
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 60px;
+      background: #f8f8f7;
+      border-radius: 10px;
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+        border-radius: 5px;
+        width: 60px;
+        height: 30px;
+        margin-right: 20px;
+      }
+      p {
+        color: #8c8c8c;
+        strong {
+          color: #1d1d1d;
+          font-weight: 500;
+        }
+      }
+      svg {
+        width: 20px;
+        height: 17px;
+        margin-left: auto;
       }
     }
   }
