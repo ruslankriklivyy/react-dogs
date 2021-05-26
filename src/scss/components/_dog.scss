@@ -1,0 +1,64 @@
+.dog {
+  .btn {
+    margin-right: 10px;
+  }
+  &-box {
+    margin-top: 20px;
+  }
+  &-image {
+    img {
+      width: 100%;
+      height: 360px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+  }
+  &-info {
+    position: relative;
+    margin-top: 50px;
+    border: 2px solid #fbe0dc;
+    border-radius: 20px;
+    z-index: 50;
+    &__top {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      text-align: center;
+    }
+    &__name {
+      font-weight: 500;
+      font-size: 36px;
+      background: #fff;
+      border-radius: 20px;
+      padding: 10px;
+      margin-bottom: 5px;
+    }
+    &__bredfor {
+      color: #8c8c8c;
+      font-weight: 500;
+      font-size: 20px;
+    }
+    &__bottom {
+      display: flex;
+      justify-content: space-between;
+      padding: 70px 40px;
+      padding-top: 110px;
+    }
+    &__item {
+      width: 45%;
+      span {
+        display: block;
+        color: #1d1d1d;
+        margin-bottom: 5px;
+      }
+      p {
+        color: #8c8c8c;
+      }
+      &-block {
+        display: flex;
+      }
+    }
+  }
+}

@@ -5,13 +5,15 @@ import { IDogsImages } from '../interfaces/interfaces';
 export class DogsStore {
   @observable
   dogsPhotos: IDogsImages[] = [];
-  oneDog: any = {};
+  oneDog: IDogsImages[] = [];
   dogId: number | null = null;
+  isFetching: boolean = false;
 
   constructor() {
     makeObservable(this, {
       dogsPhotos: observable,
       oneDog: observable,
+      isFetching: observable,
       fetchDogsPhotos: action,
       setDogId: action,
     });
@@ -24,7 +26,10 @@ export class DogsStore {
 
   @action
   fetchOneDog = (dogId: number | null) => {
-    fetchOneDog(dogId).then((data) => (this.oneDog = data));
+    this.isFetching = false;
+    fetchOneDog(dogId)
+      .then((data) => (this.oneDog = data))
+      .finally(() => (this.isFetching = true));
   };
 
   @action
