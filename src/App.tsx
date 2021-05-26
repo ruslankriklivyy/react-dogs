@@ -7,7 +7,8 @@ import galleryPng from './assets/img/images-search.png';
 
 import { Link, Route } from 'react-router-dom';
 import { Promo } from './components';
-import { BreedsPage, VotePage } from './pages';
+import { BreedsPage, DogPage, VotePage } from './pages';
+import { useObserver } from 'mobx-react-lite';
 
 const menuArr = [
   { id: 1, title: 'Voting', img: voteTablePng, color: '#B4B7FF', link: 'vote' },
@@ -54,6 +55,7 @@ function App() {
             <Route path="/" component={Promo} exact />
             <Route path="/vote" component={VotePage} />
             <Route path="/breeds" component={BreedsPage} />
+            <Route path={`/dog`} component={DogPage} />
           </div>
         </div>
       </div>

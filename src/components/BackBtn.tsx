@@ -1,8 +1,11 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 
 const BackBtn = () => {
+  const history = useHistory();
+
   return (
-    <button className="back">
+    <button className="back" onClick={() => history.goBack()}>
       <svg
         width="12"
         height="20"

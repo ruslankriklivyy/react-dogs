@@ -1,6 +1,8 @@
+import { observer } from 'mobx-react-lite';
 import React from 'react';
 
 import searchSvg from '../assets/img/search.svg';
+import { useRootStore } from '../store/RootState.Context';
 
 const iconsArr = [
   {
@@ -62,13 +64,28 @@ const iconsArr = [
   },
 ];
 
-const TopSort = () => {
+const TopSort = observer(() => {
+  const [inputValue, setInputValue] = React.useState('');
+  const { filterStore } = useRootStore();
+
+  const onHandleSearchValue = (e: any) => {
+    if (e.key === 'Enter') {
+      filterStore.setSearchQuery(inputValue);
+    }
+  };
+
   return (
     <>
       <div className="vote__top">
         <div className="breeds__search">
-          <input type="text" placeholder="Search for breeds by name" />
-          <button>
+          <input
+            type="text"
+            placeholder="Search for breeds by name"
+            value={inputValue}
+            onKeyDown={(e) => onHandleSearchValue(e)}
+            onChange={(e) => setInputValue(e.target.value)}
+          />
+          <button onClick={() => filterStore.setSearchQuery(inputValue)}>
             <img src={searchSvg} alt="search svg" />
           </button>
         </div>
@@ -82,6 +99,6 @@ const TopSort = () => {
       </div>
     </>
   );
-};
+});
 
 export default TopSort;

@@ -2,26 +2,108 @@ import React from 'react';
 import { BackBtn, Button, TopSort } from '../components';
 import { useRootStore } from '../store/RootState.Context';
 
-import dogImageJpg from '../assets/img/image_1.jpg';
-import { useObserver } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
+import loaderGif from '../assets/img/loader.gif';
+import { Link } from 'react-router-dom';
 
-const BreedsPage = () => {
-  const { dogsStore } = useRootStore();
+const numArr = [5, 10, 15, 20];
+
+const BreedsPage = observer(() => {
+  const { filterStore, dogsStore } = useRootStore();
+  const [visibleBreeds, setVisibleBreeds] = React.useState(false);
+  const [visibleLimit, setVisibleLimit] = React.useState(false);
+  const popupRef = React.useRef<HTMLDivElement>(null);
+
+  const onCloseBreeds = React.useCallback(() => {
+    setVisibleBreeds(false);
+  }, []);
+
+  const onSelectLimitBreeds = (limit: number) => {
+    filterStore.setLimitBreeds(limit);
+  };
+
+  const onSelectCurrentBreed = (name: string, id: number) => {
+    filterStore.setBreedId(id);
+    filterStore.setCurrentBreed(name);
+  };
+
+  const onSelectDog = (id: number) => {
+    dogsStore.setDogId(id);
+  };
 
   React.useEffect(() => {
-    dogsStore.fetchDogsPhotos();
-  }, [dogsStore]);
+    filterStore.fetchBreedsList(
+      filterStore.currentBreed,
+      filterStore.limitBreeds,
+      filterStore.orderType,
+      filterStore.searchQuery,
+    );
+  }, [
+    filterStore,
+    filterStore.currentBreed,
+    filterStore.limitBreeds,
+    filterStore.orderType,
+    filterStore.searchQuery,
+  ]);
 
-  return useObserver(() => (
+  React.useEffect(() => {
+    filterStore.fetchSortBreeds();
+  }, [filterStore]);
+
+  React.useEffect(() => {
+    dogsStore.fetchDogsPhotos(filterStore.breedId);
+  }, [dogsStore, filterStore.breedId]);
+
+  const escapeListener = React.useCallback(
+    (e) => {
+      if (e.key === 'Escape') {
+        onCloseBreeds();
+      }
+    },
+    [onCloseBreeds],
+  );
+  const clickListener = React.useCallback(
+    (e) => {
+      const path = e.path || (e.composedPath && e.composedPath());
+      if (!path.includes(popupRef.current)) {
+        onCloseBreeds();
+      }
+    },
+    [onCloseBreeds],
+  );
+  React.useEffect(() => {
+    document.addEventListener('click', clickListener);
+    document.addEventListener('keyup', escapeListener);
+    return () => {
+      document.removeEventListener('click', clickListener);
+      document.removeEventListener('keyup', escapeListener);
+    };
+  }, [clickListener, escapeListener]);
+
+  return (
     <div className="breeds">
-      {console.log(dogsStore.dogsPhotos)}
       <TopSort />
       <div className="box-white">
         <div className="breeds-top">
           <BackBtn />
           <Button>Breeds</Button>
-          <div className="sortby-breeds">
-            <span>All breeds</span>
+          <div
+            className="sortby-breeds"
+            onClick={() => setVisibleBreeds(!visibleBreeds)}
+            ref={popupRef}>
+            {visibleBreeds && (
+              <div className="sortby-breeds-popup">
+                <button onClick={() => filterStore.setCurrentBreed('All breeds')}>
+                  All breeds
+                </button>
+                {filterStore.sortBreeds.map((item) => (
+                  <button key={item.id} onClick={() => onSelectCurrentBreed(item.name, item.id)}>
+                    {item.name}
+                  </button>
+                ))}
+              </div>
+            )}
+            <span>{filterStore.currentBreed}</span>
             <svg
               width="12"
               height="8"
@@ -34,8 +116,17 @@ const BreedsPage = () => {
               />
             </svg>
           </div>
-          <div className="sortby-limit">
-            <span>Limit: 10</span>
+          <div className="sortby-limit" onClick={() => setVisibleLimit(!visibleLimit)}>
+            {visibleLimit && (
+              <div className="sortby-breeds-popup">
+                {numArr.map((item) => (
+                  <button key={item} onClick={() => onSelectLimitBreeds(item)}>
+                    Limit: {item}
+                  </button>
+                ))}
+              </div>
+            )}
+            <span>Limit: {filterStore.limitBreeds}</span>
             <svg
               width="12"
               height="8"
@@ -48,7 +139,7 @@ const BreedsPage = () => {
               />
             </svg>
           </div>
-          <div className="sortby-az">
+          <div className="sortby-az" onClick={() => filterStore.setOrderType('asc')}>
             <svg
               width="19"
               height="20"
@@ -63,7 +154,7 @@ const BreedsPage = () => {
               />
             </svg>
           </div>
-          <div className="sortby-za">
+          <div className="sortby-za" onClick={() => filterStore.setOrderType('desc')}>
             <svg
               width="19"
               height="20"
@@ -79,102 +170,36 @@ const BreedsPage = () => {
             </svg>
           </div>
         </div>
-        <div className="breeds-dogs">
-          {dogsStore.dogsPhotos &&
-            dogsStore.dogsPhotos.map((item, index) => (
-              <a href="/" className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}>
+        {filterStore.searchQuery !== '' || filterStore.currentBreed !== 'All breeds' ? (
+          <p className="current-breeds">
+            Search results for:{' '}
+            <strong>{filterStore.searchQuery || filterStore.currentBreed}</strong>
+          </p>
+        ) : null}
+        {filterStore.isFetching ? (
+          <div className="breeds-dogs">
+            {filterStore.breeds.map((item, index) => (
+              <Link
+                to={`/dog`}
+                className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}
+                onClick={() => onSelectDog(item.id)}>
                 <div className="breeds-dogs__box">
                   <div className="breeds-dogs__blockout">
-                    <span>{item.breeds[0]?.name}</span>
+                    <span>{item.name}</span>
                   </div>
-                  <img src={item.url} alt="dog jpg" />
+                  <img src={item.image?.url ?? dogsStore.dogsPhotos[0]?.url} alt="dog jpg" />
                 </div>
-              </a>
+              </Link>
             ))}
-          {/* <a href="/" className="breeds-dogs__item breeds-dogs__item--1">
-            <div className="breeds-dogs__box">
-              <div className="breeds-dogs__blockout">
-                <span>Affenpinscher</span>
-              </div>
-              <img src={dogImageJpg} alt="dog jpg" />
-            </div>
-          </a>
-          <a href="/" className="breeds-dogs__item breeds-dogs__item--2">
-            <div className="breeds-dogs__box">
-              <div className="breeds-dogs__blockout">
-                <span>Affenpinscher</span>
-              </div>
-              <img src={dogImageJpg} alt="dog jpg" />
-            </div>
-          </a>
-          <a href="/" className="breeds-dogs__item breeds-dogs__item--3">
-            <div className="breeds-dogs__box">
-              <div className="breeds-dogs__blockout">
-                <span>Affenpinscher</span>
-              </div>
-              <img src={dogImageJpg} alt="dog jpg" />
-            </div>
-          </a>
-          <a href="/" className="breeds-dogs__item breeds-dogs__item--4">
-            <div className="breeds-dogs__box">
-              <div className="breeds-dogs__blockout">
-                <span>Affenpinscher</span>
-              </div>
-              <img src={dogImageJpg} alt="dog jpg" />
-            </div>
-          </a>
-          <a href="/" className="breeds-dogs__item breeds-dogs__item--5">
-            <div className="breeds-dogs__box">
-              <div className="breeds-dogs__blockout">
-                <span>Affenpinscher</span>
-              </div>
-              <img src={dogImageJpg} alt="dog jpg" />
-            </div>
-          </a>
-          <a href="/" className="breeds-dogs__item breeds-dogs__item--1">
-            <div className="breeds-dogs__box">
-              <div className="breeds-dogs__blockout">
-                <span>Affenpinscher</span>
-              </div>
-              <img src={dogImageJpg} alt="dog jpg" />
-            </div>
-          </a>
-          <a href="/" className="breeds-dogs__item breeds-dogs__item--2">
-            <div className="breeds-dogs__box">
-              <div className="breeds-dogs__blockout">
-                <span>Affenpinscher</span>
-              </div>
-              <img src={dogImageJpg} alt="dog jpg" />
-            </div>
-          </a>
-          <a href="/" className="breeds-dogs__item breeds-dogs__item--3">
-            <div className="breeds-dogs__box">
-              <div className="breeds-dogs__blockout">
-                <span>Affenpinscher</span>
-              </div>
-              <img src={dogImageJpg} alt="dog jpg" />
-            </div>
-          </a>
-          <a href="/" className="breeds-dogs__item breeds-dogs__item--4">
-            <div className="breeds-dogs__box">
-              <div className="breeds-dogs__blockout">
-                <span>Affenpinscher</span>
-              </div>
-              <img src={dogImageJpg} alt="dog jpg" />
-            </div>
-          </a>
-          <a href="/" className="breeds-dogs__item breeds-dogs__item--5">
-            <div className="breeds-dogs__box">
-              <div className="breeds-dogs__blockout">
-                <span>Affenpinscher</span>
-              </div>
-              <img src={dogImageJpg} alt="dog jpg" />
-            </div>
-          </a> */}
-        </div>
+          </div>
+        ) : (
+          <div className="loader">
+            <img src={loaderGif} alt="loader gif" />
+          </div>
+        )}
       </div>
     </div>
-  ));
-};
+  );
+});
 
 export default BreedsPage;

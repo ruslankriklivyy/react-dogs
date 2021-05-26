@@ -15,6 +15,18 @@ export interface IBreedsItems {
   weight: IBreedsSizes;
 }
 
+export interface IBreedsImage {
+  id: string;
+  width: number;
+  height: number;
+  url: string;
+}
+
+export interface IBreeds extends IBreedsItems {
+  image: IBreedsImage;
+  origin: string;
+}
+
 export interface IDogsImages {
   breeds: IBreedsItems[];
   height: number;
