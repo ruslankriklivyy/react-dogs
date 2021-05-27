@@ -30,34 +30,6 @@
       svg {
         margin-left: auto;
       }
-      &-popup {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        position: absolute;
-        top: 110%;
-        left: 0;
-        z-index: 200;
-        width: 210px;
-        min-height: 100px;
-        background: #ffffff;
-        border-radius: 30px;
-        padding: 10px;
-        button {
-          width: 100%;
-          text-align: left;
-          border: none;
-          color: #8c8c8c;
-          background: transparent;
-          cursor: pointer;
-          padding: 10px;
-          transition: all 0.2s ease;
-          border-radius: 7px;
-          &:hover {
-            background: #fbe0dc;
-          }
-        }
-      }
     }
     &-limit {
       position: relative;
@@ -319,14 +291,18 @@
         border: 2px solid transparent;
         cursor: pointer;
         transition: all 0.2s ease;
-        &:hover {
-          border-color: #fbe0dc;
+        svg {
+          path {
+            transition: all 0.2s ease;
+          }
         }
-        img {
-          width: 24px;
-          height: 24px;
-          object-fit: contain !important;
-          border-radius: 0;
+        &:hover {
+          background: #ff868e;
+          svg {
+            path {
+              fill: #fff;
+            }
+          }
         }
       }
     }

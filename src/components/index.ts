@@ -7,3 +7,5 @@ export { default as SortByBreeds } from './SortByBreeds';
 export { default as SortByLimit } from './SortByLimit';
 export { default as SortByTitle } from './SortByTitle';
 export { default as Paginate } from './Paginate';
+export { default as GalleryOrder } from './Gallery/GalleryOrder';
+export { default as BreedsOrder } from './BreedsOrder';

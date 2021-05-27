@@ -1,15 +1,18 @@
 import React from 'react';
 import { useRootStore } from '../store/RootState.Context';
+import downArrowSvg from '../assets/img/down-arrow.svg';
+import { observer } from 'mobx-react-lite';
 
 const numArr = [5, 10, 15, 20];
 
-const SortByLimit = () => {
-  const { filterStore } = useRootStore();
+const SortByLimit = observer(() => {
+  const { galleryStore } = useRootStore();
   const [visibleLimit, setVisibleLimit] = React.useState(false);
   const popupRef = React.useRef<HTMLDivElement>(null);
 
   const onSelectLimitBreeds = (limit: number) => {
-    filterStore.setLimitBreeds(limit);
+    galleryStore.setGalleryLimit(limit);
+    onCloseLimit();
   };
 
   const onCloseLimit = React.useCallback(() => {
@@ -43,25 +46,23 @@ const SortByLimit = () => {
   }, [clickListener, escapeListener]);
 
   return (
-    <div className="sortby-limit" onClick={() => setVisibleLimit(!visibleLimit)} ref={popupRef}>
+    <div className="gallery-sort__item gallery-sort__item--limit" ref={popupRef}>
       {visibleLimit && (
-        <div className="sortby-breeds-popup">
+        <div className="sortby-popup sortby-popup--gallery sortby-popup--limit">
           {numArr.map((item) => (
             <button key={item} onClick={() => onSelectLimitBreeds(item)}>
-              Limit: {item}
+              {item}
             </button>
           ))}
         </div>
       )}
-      <span>Limit: {filterStore.limitBreeds}</span>
-      <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M6.59406 7.17405L11.7538 2.01423C12.0821 1.68603 12.0821 1.15383 11.7538 0.825753C11.4256 0.497673 10.8935 0.497673 10.5655 0.825753L5.99993 5.39142L1.43458 0.825933C1.10635 0.497793 0.574264 0.497793 0.24617 0.825933C-0.0820567 1.15401 -0.0820567 1.68615 0.24617 2.01435L5.40591 7.17418C5.57003 7.33824 5.78492 7.42017 5.9999 7.42017C6.21498 7.42017 6.43002 7.33807 6.59406 7.17405Z"
-          fill="#8C8C8C"
-        />
-      </svg>
+      <h4 className="gallery-sort__type">Limit</h4>
+      <button className="gallery-sort__button" onClick={() => setVisibleLimit(!visibleLimit)}>
+        <span>{galleryStore.limit} items per page</span>
+        <img src={downArrowSvg} alt="down arrow svg" />
+      </button>
     </div>
   );
-};
+});
 
 export default SortByLimit;

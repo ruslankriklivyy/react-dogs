@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   BackBtn,
+  BreedsOrder,
   Button,
   Paginate,
   Prelaoder,
@@ -19,6 +20,15 @@ const BreedsPage = observer(() => {
 
   const onSelectDog = (id: number) => {
     dogsStore.setDogId(id);
+  };
+
+  const onSelectLimitBreeds = (limit: number) => {
+    filterStore.setLimitBreeds(limit);
+  };
+
+  const onSelectCurrentBreed = (name: string, id: number) => {
+    filterStore.setBreedId(id);
+    filterStore.setCurrentBreed(name);
   };
 
   React.useEffect(() => {
@@ -53,8 +63,18 @@ const BreedsPage = observer(() => {
         <div className="breeds-top">
           <BackBtn />
           <Button>Breeds</Button>
-          <SortByBreeds />
-          <SortByLimit />
+          <BreedsOrder
+            items={filterStore.sortBreeds}
+            currentBreed={filterStore.currentBreed}
+            setCurrentBreed={filterStore.setCurrentBreed}
+            onSelectCurrentBreed={onSelectCurrentBreed}
+            type={'All breeds'}
+          />
+          <BreedsOrder
+            limit
+            onSelectLimitBreeds={onSelectLimitBreeds}
+            limitBreeds={filterStore.limitBreeds}
+          />
           <SortByTitle />
         </div>
         {filterStore.searchQuery !== '' || filterStore.currentBreed !== 'All breeds' ? (

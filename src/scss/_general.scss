@@ -194,9 +194,6 @@
   }
 }
 
-.reload-wrapper {
-}
-
 .reload {
   background: #ffffff;
   border-radius: 10px;
@@ -207,5 +204,38 @@
   transition: all 0.2s ease;
   &:hover {
     border-color: #fbe0dc;
+  }
+}
+
+.sortby-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+  top: 110%;
+  left: 0;
+  z-index: 200;
+  width: 210px;
+  min-height: 100px;
+  background: #ffffff;
+  border-radius: 30px;
+  padding: 10px;
+
+  &--gallery {
+    top: 90%;
+  }
+  button {
+    width: 100% !important;
+    text-align: left;
+    border: none;
+    color: #8c8c8c;
+    background: transparent;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.2s ease;
+    border-radius: 7px;
+    &:hover {
+      background: #fbe0dc;
+    }
   }
 }

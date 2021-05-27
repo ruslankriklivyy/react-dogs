@@ -42,6 +42,7 @@
       }
     }
     &__item {
+      position: relative;
       padding: 10px 15px;
       &-wrapper {
         display: flex;
@@ -54,7 +55,7 @@
         }
       }
       &--limit {
-        button {
+        .gallery-sort__button {
           width: 235px !important;
         }
       }

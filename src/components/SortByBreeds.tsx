@@ -48,7 +48,7 @@ const SortByBreeds = () => {
   return (
     <div className="sortby-breeds" onClick={() => toggleVisibleBreeds()} ref={popupRef}>
       {visibleBreeds && (
-        <div className="sortby-breeds-popup">
+        <div className="sortby-popup">
           <button onClick={() => filterStore.setCurrentBreed('All breeds')}>All breeds</button>
           {filterStore.sortBreeds.map((item) => (
             <button key={item.id} onClick={() => onSelectCurrentBreed(item.name, item.id)}>

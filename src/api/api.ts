@@ -38,9 +38,20 @@ export const fetchOneDog = (dogId: number | null) => {
   return instance.get(`images/search?breed_id=${dogId}`).then(({ data }) => data);
 };
 
-export const fetchGalleryFromApi = () => {
-  return instance.get(`images/search?limit=10`).then(({ data }) => {
-    console.log(data);
-    return data;
-  });
+export const fetchGalleryFromApi = (
+  order: string,
+  limit: number,
+  type: string,
+  currentBreedId: number | null,
+) => {
+  return instance
+    .get(
+      `images/search?limit=${limit}${type !== 'Random' ? `&mime_types=${type}` : ''}${
+        order !== 'Random' ? `&order=${order}` : ''
+      }${currentBreedId ? `&breed_id=${currentBreedId}` : ''}`,
+    )
+    .then(({ data }) => {
+      console.log(data);
+      return data;
+    });
 };
