@@ -2,6 +2,7 @@ import React from 'react';
 import {
   BackBtn,
   Button,
+  Paginate,
   Prelaoder,
   SortByBreeds,
   SortByLimit,
@@ -26,6 +27,7 @@ const BreedsPage = observer(() => {
       filterStore.limitBreeds,
       filterStore.orderType,
       filterStore.searchQuery,
+      filterStore.currentPage,
     );
   }, [
     filterStore,
@@ -33,6 +35,7 @@ const BreedsPage = observer(() => {
     filterStore.limitBreeds,
     filterStore.orderType,
     filterStore.searchQuery,
+    filterStore.currentPage,
   ]);
 
   React.useEffect(() => {
@@ -56,26 +59,29 @@ const BreedsPage = observer(() => {
         </div>
         {filterStore.searchQuery !== '' || filterStore.currentBreed !== 'All breeds' ? (
           <p className="current-breeds">
-            Search results for:{' '}
+            Search results for:
             <strong>{filterStore.searchQuery || filterStore.currentBreed}</strong>
           </p>
         ) : null}
         {filterStore.isFetching ? (
-          <div className="breeds-dogs">
-            {filterStore.breeds.map((item, index) => (
-              <Link
-                to={`/dog`}
-                className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}
-                onClick={() => onSelectDog(item.id)}>
-                <div className="breeds-dogs__box">
-                  <div className="breeds-dogs__blockout">
-                    <span>{item.name}</span>
+          <>
+            <div className={`breeds-dogs breeds-dogs--${filterStore.limitBreeds}`}>
+              {filterStore.breeds.map((item, index) => (
+                <Link
+                  to="/breeds/dog"
+                  className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}
+                  onClick={() => onSelectDog(item.id)}>
+                  <div className="breeds-dogs__box">
+                    <div className="breeds-dogs__blockout">
+                      <span>{item.name}</span>
+                    </div>
+                    <img src={item.image?.url ?? dogsStore.dogsPhotos[0]?.url} alt="dog jpg" />
                   </div>
-                  <img src={item.image?.url ?? dogsStore.dogsPhotos[0]?.url} alt="dog jpg" />
-                </div>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+            <Paginate />
+          </>
         ) : (
           <Prelaoder />
         )}

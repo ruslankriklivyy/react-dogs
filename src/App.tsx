@@ -1,14 +1,14 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import logoSvg from './assets/img/logo.svg';
 import voteTablePng from './assets/img/vote-table.png';
 import petBreedsPng from './assets/img/pet-breeds.png';
 import galleryPng from './assets/img/images-search.png';
 
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, useLocation } from 'react-router-dom';
 import { Promo } from './components';
-import { BreedsPage, DogPage, VotePage } from './pages';
-import { useObserver } from 'mobx-react-lite';
+import { BreedsPage, DogPage, GalleryPage, VotePage } from './pages';
 
 const menuArr = [
   { id: 1, title: 'Voting', img: voteTablePng, color: '#B4B7FF', link: 'vote' },
@@ -17,6 +17,8 @@ const menuArr = [
 ];
 
 function App() {
+  let location = useLocation();
+
   return (
     <div className="box">
       <div className="container">
@@ -35,7 +37,14 @@ function App() {
                 <ul className="menu">
                   {menuArr.map((item) => (
                     <li key={item.id} className="menu__item">
-                      <Link to={`/${item.link}`} className="menu__item-link">
+                      <Link
+                        to={`/${item.link}`}
+                        className={classNames({
+                          'menu__item-link active':
+                            location.pathname.includes(item.link) || location.pathname === '/dog',
+                          'menu__item-link':
+                            location.pathname !== '/dog' || !location.pathname.includes(item.link),
+                        })}>
                         <div
                           className="menu__item-top"
                           style={{ backgroundColor: `${item.color}` }}>
@@ -54,8 +63,9 @@ function App() {
           <div className="right-section">
             <Route path="/" component={Promo} exact />
             <Route path="/vote" component={VotePage} />
-            <Route path="/breeds" component={BreedsPage} />
-            <Route path={`/dog`} component={DogPage} />
+            <Route path="/breeds" component={BreedsPage} exact />
+            <Route path="/breeds/dog" component={DogPage} exact />
+            <Route path="/gallery" component={GalleryPage} />
           </div>
         </div>
       </div>

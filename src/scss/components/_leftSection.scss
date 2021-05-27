@@ -63,6 +63,17 @@
               border-color: #fff;
             }
           }
+          &.active {
+            .menu__item-bottom {
+              background-color: #ff868e;
+              span {
+                color: #fff;
+              }
+            }
+            .menu__item-top {
+              border-color: #fbe0dc;
+            }
+          }
           &:active {
             .menu__item-bottom {
               background-color: #ff868e;

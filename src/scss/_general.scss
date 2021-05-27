@@ -21,6 +21,12 @@
   width: 100%;
 }
 
+.paginate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .current-breeds {
   margin-top: 20px;
   color: #8c8c8c;
@@ -165,5 +171,41 @@
   &:hover {
     background: #fbe0dc;
     color: #ff868e;
+  }
+  &--upload {
+    background: #fbe0dc;
+    color: #ff868e;
+    margin-left: auto;
+    &:hover {
+      background: #ff868e;
+      color: #fff;
+      svg {
+        path {
+          fill: #fff;
+        }
+      }
+    }
+    svg {
+      margin-right: 10px;
+      path {
+        transition: all 0.2s ease;
+      }
+    }
+  }
+}
+
+.reload-wrapper {
+}
+
+.reload {
+  background: #ffffff;
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+  &:hover {
+    border-color: #fbe0dc;
   }
 }

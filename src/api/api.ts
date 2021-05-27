@@ -17,6 +17,7 @@ export const fetchBreeds = (
   limit: number,
   order: string,
   searchQuery: string,
+  currentPage: number,
 ): Promise<IBreeds[]> => {
   return instance
     .get(
@@ -24,7 +25,7 @@ export const fetchBreeds = (
         breed !== 'All breeds'
           ? `/search?q=${breed}`
           : `${searchQuery !== '' ? '&' : '?'}order=${order.toUpperCase()}`
-      }${breed !== 'All breeds' ? '' : `&limit=${limit}`}`,
+      }${breed !== 'All breeds' ? '' : `&limit=${limit}`}&page=${currentPage}`,
     )
     .then(({ data }) => data);
 };
@@ -34,7 +35,11 @@ export const fetchSortBreeds = (): Promise<IBreeds[]> => {
 };
 
 export const fetchOneDog = (dogId: number | null) => {
-  return instance.get(`images/search?breed_id=${dogId}`).then(({ data }) => {
+  return instance.get(`images/search?breed_id=${dogId}`).then(({ data }) => data);
+};
+
+export const fetchGalleryFromApi = () => {
+  return instance.get(`images/search?limit=10`).then(({ data }) => {
     console.log(data);
     return data;
   });

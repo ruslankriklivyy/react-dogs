@@ -6,3 +6,4 @@ export { default as Prelaoder } from './Prelaoder';
 export { default as SortByBreeds } from './SortByBreeds';
 export { default as SortByLimit } from './SortByLimit';
 export { default as SortByTitle } from './SortByTitle';
+export { default as Paginate } from './Paginate';

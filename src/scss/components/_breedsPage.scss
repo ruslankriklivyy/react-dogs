@@ -1,4 +1,7 @@
 .breeds {
+  .btn--paginate {
+    margin-top: 20px;
+  }
   &-top {
     display: flex;
     align-items: center;
@@ -119,8 +122,21 @@
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(8, 2fr);
-    grid-template-rows: repeat(15, 3vw);
+    grid-template-rows: repeat(29, 3vw);
     grid-gap: 1.5rem;
+
+    &--5 {
+      grid-template-rows: repeat(7, 3vw);
+    }
+    &--10 {
+      grid-template-rows: repeat(14, 3vw);
+    }
+    &--15 {
+      grid-template-rows: repeat(21, 3vw);
+    }
+    &--20 {
+      grid-template-rows: repeat(28, 3vw);
+    }
 
     &__box {
       position: relative;
@@ -191,6 +207,66 @@
         grid-row-start: 13;
         grid-row-end: 15;
       }
+      &--11 {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 15;
+        grid-row-end: 17;
+      }
+      &--12 {
+        grid-column-start: 4;
+        grid-column-end: 7;
+        grid-row-start: 15;
+        grid-row-end: 17;
+      }
+      &--13 {
+        grid-column-start: 7;
+        grid-column-end: 12;
+        grid-row-start: 15;
+        grid-row-end: 20;
+      }
+      &--14 {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 17;
+        grid-row-end: 22;
+      }
+      &--15 {
+        grid-column-start: 7;
+        grid-column-end: 12;
+        grid-row-start: 20;
+        grid-row-end: 22;
+      }
+      &--16 {
+        grid-column-start: 7;
+        grid-column-end: 12;
+        grid-row-start: 22;
+        grid-row-end: 24;
+      }
+      &--17 {
+        grid-column-start: 4;
+        grid-column-end: 7;
+        grid-row-start: 22;
+        grid-row-end: 24;
+      }
+      &--18 {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 22;
+        grid-row-end: 27;
+      }
+      &--19 {
+        grid-column-start: 4;
+        grid-column-end: 12;
+        grid-row-start: 24;
+        grid-row-end: 29;
+      }
+      &--20 {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 27;
+        grid-row-end: 29;
+      }
       &:hover {
         .breeds-dogs__blockout {
           visibility: visible;
@@ -221,11 +297,37 @@
         align-items: center;
         justify-content: center;
         width: 85%;
-        height: 30px;
+        padding: 5px;
+        min-height: 30px;
         background: #ffffff;
         border-radius: 10px;
         color: #ff868e;
         text-align: center;
+      }
+      button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        border-radius: 10px;
+        width: 40px;
+        height: 40px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        &:hover {
+          border-color: #fbe0dc;
+        }
+        img {
+          width: 24px;
+          height: 24px;
+          object-fit: contain !important;
+          border-radius: 0;
+        }
       }
     }
     img {

@@ -12,6 +12,7 @@ export class FilterStore {
   orderType: string = 'asc';
   searchQuery: string = '';
   isFetching: boolean = false;
+  currentPage: number = 0;
 
   constructor() {
     makeObservable(this, {
@@ -22,6 +23,7 @@ export class FilterStore {
       limitBreeds: observable,
       orderType: observable,
       searchQuery: observable,
+      currentPage: observable,
       fetchBreedsList: action,
       setCurrentBreed: action,
       setBreedId: action,
@@ -29,13 +31,20 @@ export class FilterStore {
       setLimitBreeds: action,
       setOrderType: action,
       setSearchQuery: action,
+      setCurrentPage: action,
     });
   }
 
   @action
-  fetchBreedsList = (breed: string, limit: number, order: string, searchQuery: string) => {
+  fetchBreedsList = (
+    breed: string,
+    limit: number,
+    order: string,
+    searchQuery: string,
+    currentPage: number,
+  ) => {
     this.isFetching = false;
-    fetchBreeds(breed, limit, order, searchQuery)
+    fetchBreeds(breed, limit, order, searchQuery, currentPage)
       .then((data) => (this.breeds = data))
       .finally(() => (this.isFetching = true));
   };
@@ -68,5 +77,10 @@ export class FilterStore {
   @action
   setSearchQuery = (search: string) => {
     this.searchQuery = search;
+  };
+
+  @action
+  setCurrentPage = (currentPage: number) => {
+    this.currentPage = currentPage;
   };
 }
