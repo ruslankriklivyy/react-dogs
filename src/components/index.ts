@@ -9,3 +9,4 @@ export { default as SortByTitle } from './SortByTitle';
 export { default as Paginate } from './Paginate';
 export { default as GalleryOrder } from './Gallery/GalleryOrder';
 export { default as BreedsOrder } from './BreedsOrder';
+export { default as AppInitialize } from './AppInitialize';

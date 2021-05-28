@@ -43,12 +43,13 @@ export const fetchGalleryFromApi = (
   limit: number,
   type: string,
   currentBreedId: number | null,
+  currentPage: number,
 ) => {
   return instance
     .get(
       `images/search?limit=${limit}${type !== 'Random' ? `&mime_types=${type}` : ''}${
         order !== 'Random' ? `&order=${order}` : ''
-      }${currentBreedId ? `&breed_id=${currentBreedId}` : ''}`,
+      }${currentBreedId ? `&breed_id=${currentBreedId}` : ''}&page=${currentPage}`,
     )
     .then(({ data }) => {
       console.log(data);

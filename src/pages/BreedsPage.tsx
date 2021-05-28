@@ -18,6 +18,16 @@ import { Link } from 'react-router-dom';
 const BreedsPage = observer(() => {
   const { filterStore, dogsStore } = useRootStore();
 
+  const onPlusCurrentPage = () => {
+    filterStore.setCurrentPage(filterStore.currentPage + 1);
+  };
+
+  const onMinusCurrentPage = () => {
+    if (filterStore.currentPage > 0) {
+      filterStore.setCurrentPage(filterStore.currentPage - 1);
+    }
+  };
+
   const onSelectDog = (id: number) => {
     dogsStore.setDogId(id);
   };
@@ -100,7 +110,11 @@ const BreedsPage = observer(() => {
                 </Link>
               ))}
             </div>
-            <Paginate />
+            <Paginate
+              onPlusCurrentPage={onPlusCurrentPage}
+              onMinusCurrentPage={onMinusCurrentPage}
+              currentPage={filterStore.currentPage}
+            />
           </>
         ) : (
           <Prelaoder />

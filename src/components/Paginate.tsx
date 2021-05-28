@@ -1,23 +1,16 @@
 import React from 'react';
 import { Button } from '.';
-import { useRootStore } from '../store/RootState.Context';
 
-const Paginate = () => {
-  const { filterStore } = useRootStore();
+interface IPaginate {
+  onMinusCurrentPage: () => void;
+  onPlusCurrentPage: () => void;
+  currentPage: number;
+}
 
-  const onPlusCurrentPage = () => {
-    filterStore.setCurrentPage(filterStore.currentPage + 1);
-  };
-
-  const onMinusCurrentPage = () => {
-    if (filterStore.currentPage > 0) {
-      filterStore.setCurrentPage(filterStore.currentPage - 1);
-    }
-  };
-
+const Paginate: React.FC<IPaginate> = ({ onMinusCurrentPage, onPlusCurrentPage, currentPage }) => {
   return (
     <div className="paginate">
-      {filterStore.currentPage > 0 && (
+      {currentPage > 0 && (
         <Button onClick={() => onMinusCurrentPage()} className={'btn btn--paginate'}>
           Prev page
         </Button>

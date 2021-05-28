@@ -8,8 +8,10 @@
   &-dog {
     &__img {
       position: relative;
+      border-radius: 20px;
       img {
         height: 360px;
+        border-radius: 20px;
       }
     }
   }

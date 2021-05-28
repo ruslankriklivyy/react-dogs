@@ -1,8 +1,20 @@
 import React from 'react';
+import { IBreeds } from '../interfaces/interfaces';
 
 const numArr = [5, 10, 15, 20];
 
-const BreedsOrder = ({
+interface IBreedsOrder {
+  items?: IBreeds[];
+  onSelectCurrentBreed?: (name: string, id: number) => void;
+  currentBreed?: string;
+  setCurrentBreed?: (currentBreed: string) => void;
+  type?: string;
+  limit?: boolean;
+  limitBreeds?: number;
+  onSelectLimitBreeds?: (limit: number) => void;
+}
+
+const BreedsOrder: React.FC<IBreedsOrder> = ({
   items,
   onSelectCurrentBreed,
   currentBreed,
@@ -11,7 +23,7 @@ const BreedsOrder = ({
   limit,
   limitBreeds,
   onSelectLimitBreeds,
-}: any) => {
+}) => {
   const [visibleBreeds, setVisibleBreeds] = React.useState(false);
   const popupRef = React.useRef<HTMLDivElement>(null);
 
@@ -55,9 +67,13 @@ const BreedsOrder = ({
         <div className="sortby-breeds" onClick={() => toggleVisibleBreeds()} ref={popupRef}>
           {visibleBreeds && (
             <div className="sortby-popup">
-              <button onClick={() => setCurrentBreed('All breeds')}>{type}</button>
-              {items.map((item: any) => (
-                <button key={item.id} onClick={() => onSelectCurrentBreed(item.name, item.id)}>
+              <button onClick={() => setCurrentBreed && setCurrentBreed('All breeds')}>
+                {type}
+              </button>
+              {items?.map((item: any) => (
+                <button
+                  key={item.id}
+                  onClick={() => onSelectCurrentBreed && onSelectCurrentBreed(item.name, item.id)}>
                   {item.name}
                 </button>
               ))}
@@ -84,7 +100,7 @@ const BreedsOrder = ({
           {visibleBreeds && (
             <div className="sortby-popup">
               {numArr.map((item) => (
-                <button key={item} onClick={() => onSelectLimitBreeds(item)}>
+                <button key={item} onClick={() => onSelectLimitBreeds && onSelectLimitBreeds(item)}>
                   Limit: {item}
                 </button>
               ))}

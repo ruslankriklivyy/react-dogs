@@ -8,14 +8,17 @@ export class DogsStore {
   oneDog: IDogsImages[] = [];
   dogId: number | null = null;
   isFetching: boolean = false;
+  isDarkMode: boolean = false;
 
   constructor() {
     makeObservable(this, {
       dogsPhotos: observable,
       oneDog: observable,
       isFetching: observable,
+      isDarkMode: observable,
       fetchDogsPhotos: action,
       setDogId: action,
+      setDarkMode: action,
     });
   }
 
@@ -35,5 +38,10 @@ export class DogsStore {
   @action
   setDogId = (id: number) => {
     this.dogId = id;
+  };
+
+  @action
+  setDarkMode = (darkMode: boolean) => {
+    this.isDarkMode = darkMode;
   };
 }

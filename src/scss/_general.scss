@@ -2,11 +2,13 @@
   max-width: 1400px;
   padding: 0 15px;
   margin: 0 auto;
+  height: 100%;
 }
 
 .box {
   padding-top: 30px;
   padding-bottom: 30px;
+  height: 100vh;
 
   &-wrapper {
     display: flex;
@@ -236,6 +238,193 @@
     border-radius: 7px;
     &:hover {
       background: #fbe0dc;
+    }
+  }
+}
+
+.toggle-mode {
+  display: flex;
+  margin-left: auto;
+  &-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border-radius: 50px;
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    &.dark {
+      background: rgba(255, 255, 255, 0.05);
+    }
+  }
+  &__btn {
+    width: 44px;
+    height: 24px;
+    background: #fbe0dc;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    &.dark {
+      background: rgba(255, 134, 142, 0.2);
+      span {
+        margin-right: auto;
+        margin-left: 0;
+      }
+    }
+    span {
+      display: block;
+      width: 16px;
+      height: 16px;
+      background: #ff868e;
+      border-radius: 40px;
+      margin-left: auto;
+    }
+  }
+}
+
+body {
+  line-height: 1;
+  &.dark {
+    background: #1d1d1d;
+    color: #fff;
+    .promo {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .dog-info {
+      border: 2px solid rgba(255, 134, 142, 0.2);
+      &__name {
+        background: #282828;
+      }
+      &__item span {
+        color: #fff;
+      }
+    }
+    .navigation {
+      .menu {
+        &__item {
+          &-bottom {
+            background: rgba(255, 255, 255, 0.1);
+          }
+        }
+      }
+    }
+    .box-white {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .vote-actions {
+      background: #292929;
+      border-color: #292929;
+    }
+    .vote-history__item {
+      background: rgba(255, 255, 255, 0.05);
+      span {
+        background: #1d1d1d;
+      }
+      p {
+        strong {
+          color: #fff;
+        }
+      }
+    }
+    .back {
+      background: rgba(255, 134, 142, 0.2);
+      &:active {
+        svg {
+          path {
+            fill: #ff868e;
+          }
+        }
+      }
+    }
+    .btn {
+      &:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
+    }
+    .breeds-dogs__blockout button {
+      background: #343434;
+      &:hover {
+        background: #292929;
+        svg {
+          path {
+            fill: #ff868e;
+          }
+        }
+      }
+    }
+    .reload {
+      background: rgba(255, 255, 255, 0.05);
+      &:hover {
+        border: 2px solid rgba(255, 134, 142, 0.2);
+      }
+    }
+    .btn--upload {
+      background: rgba(255, 134, 142, 0.2);
+    }
+    .breeds__search button {
+      background: rgba(255, 134, 142, 0.2);
+    }
+    .gallery-sort__button span {
+      color: #fff;
+    }
+    .sortby-popup {
+      background: #292929;
+    }
+    .gallery-sort {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .gallery-sort__button {
+      background: rgba(255, 255, 255, 0.05);
+      &:hover {
+        border: 2px solid rgba(255, 134, 142, 0.2);
+      }
+    }
+    .sort-btn {
+      background: rgba(255, 255, 255, 0.05);
+      &:active {
+        background: rgba(255, 255, 255, 0.03);
+        svg {
+          path {
+            fill: #ff868e;
+          }
+        }
+      }
+    }
+    .breeds-dogs__blockout {
+      span {
+        background: #282828;
+        color: #ff868e;
+      }
+    }
+    .breeds__search input {
+      color: #fff;
+    }
+    .upload-block {
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px dashed rgba(255, 134, 142, 0.2);
+    }
+    .upload-close {
+      background: rgba(255, 255, 255, 0.05);
+      &:hover {
+        border-color: rgba(255, 134, 142, 0.2);
+      }
+    }
+    .upload-action {
+      strong {
+        color: #fff;
+      }
+    }
+    .sortby-breeds,
+    .sortby-limit,
+    .sortby-az,
+    .sortby-za,
+    .breeds__search input {
+      background: rgba(255, 255, 255, 0.05);
+      &:hover {
+        border: 2px solid rgba(255, 134, 142, 0.2);
+      }
     }
   }
 }

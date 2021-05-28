@@ -10,6 +10,7 @@ export class GalleryStore {
   type: string = 'Random';
   limit: number = 5;
   isFetching: boolean = false;
+  currentPage: number = 0;
 
   constructor() {
     makeObservable(this, {
@@ -19,19 +20,27 @@ export class GalleryStore {
       type: observable,
       order: observable,
       currentBreedId: observable,
+      currentPage: observable,
       fetchGallery: action,
       setGalleryOrder: action,
       setGalleryType: action,
       setGalleryBreed: action,
       setGalleryLimit: action,
       setCurrentBreedId: action,
+      setCurrentPage: action,
     });
   }
 
   @action
-  fetchGallery = (order: string, limit: number, type: string, currentBreedId: number | null) => {
+  fetchGallery = (
+    order: string,
+    limit: number,
+    type: string,
+    currentBreedId: number | null,
+    currentPage: number,
+  ) => {
     this.isFetching = false;
-    fetchGalleryFromApi(order, limit, type, currentBreedId)
+    fetchGalleryFromApi(order, limit, type, currentBreedId, currentPage)
       .then((data) => (this.gallery = data))
       .finally(() => (this.isFetching = true));
   };
@@ -59,5 +68,10 @@ export class GalleryStore {
   @action
   setCurrentBreedId = (currentBreedId: number | null) => {
     this.currentBreedId = currentBreedId;
+  };
+
+  @action
+  setCurrentPage = (currentPage: number) => {
+    this.currentPage = currentPage;
   };
 }
