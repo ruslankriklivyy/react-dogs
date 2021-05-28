@@ -58,6 +58,9 @@
       }
       &-block {
         display: flex;
+        p {
+          margin-left: 5px;
+        }
       }
     }
   }

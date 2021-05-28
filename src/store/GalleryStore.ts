@@ -1,10 +1,16 @@
 import { observable, action, makeObservable } from 'mobx';
-import { fetchGalleryFromApi } from '../api/api';
+import {
+  addToFavorites,
+  fetchFavoritesImages,
+  fetchGalleryFromApi,
+  sendDogImage,
+} from '../api/api';
 import { IDogsImages } from '../interfaces/interfaces';
 
 export class GalleryStore {
   gallery: IDogsImages[] = [];
   currentBreed: string = 'Random';
+  favoritesImages: any = [];
   currentBreedId: number | null = null;
   order: string = 'Random';
   type: string = 'Random';
@@ -21,6 +27,7 @@ export class GalleryStore {
       order: observable,
       currentBreedId: observable,
       currentPage: observable,
+      favoritesImages: observable,
       fetchGallery: action,
       setGalleryOrder: action,
       setGalleryType: action,
@@ -28,6 +35,8 @@ export class GalleryStore {
       setGalleryLimit: action,
       setCurrentBreedId: action,
       setCurrentPage: action,
+      sendImage: action,
+      getFavoritesImage: action,
     });
   }
 
@@ -73,5 +82,23 @@ export class GalleryStore {
   @action
   setCurrentPage = (currentPage: number) => {
     this.currentPage = currentPage;
+  };
+
+  @action
+  sendImage = (image: any) => {
+    sendDogImage(image);
+  };
+
+  @action
+  addImageToFavorites = (imageId: string) => {
+    addToFavorites(imageId);
+  };
+
+  @action
+  getFavoritesImage = () => {
+    this.isFetching = false;
+    fetchFavoritesImages()
+      .then((data) => (this.favoritesImages = data))
+      .finally(() => (this.isFetching = true));
   };
 }

@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import searchSvg from '../assets/img/search.svg';
 import { useRootStore } from '../store/RootState.Context';
@@ -8,6 +9,7 @@ const iconsArr = [
   {
     id: 1,
     color: '#97EAB9',
+    link: 'likes',
     img: (
       <svg
         width="30"
@@ -27,6 +29,7 @@ const iconsArr = [
   {
     id: 2,
     color: '#FF868E',
+    link: 'favorites',
     img: (
       <svg
         width="30"
@@ -46,6 +49,7 @@ const iconsArr = [
   {
     id: 3,
     color: '#FFD280',
+    link: 'dislikes',
     img: (
       <svg
         width="30"
@@ -91,9 +95,9 @@ const TopSort = observer(() => {
         </div>
         <div className="sort">
           {iconsArr.map((item) => (
-            <button key={item.id} className="sort-btn">
-              {item.img}
-            </button>
+            <Link to={`/${item.link}`} key={item.id}>
+              <button className="sort-btn">{item.img}</button>
+            </Link>
           ))}
         </div>
       </div>

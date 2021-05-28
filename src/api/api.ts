@@ -51,8 +51,30 @@ export const fetchGalleryFromApi = (
         order !== 'Random' ? `&order=${order}` : ''
       }${currentBreedId ? `&breed_id=${currentBreedId}` : ''}&page=${currentPage}`,
     )
-    .then(({ data }) => {
-      console.log(data);
-      return data;
-    });
+    .then(({ data }) => data);
+};
+
+export const sendDogImage = (image: any) => {
+  return instance
+    .post('images/upload', {
+      file: image,
+      sub_id: 'ruslanK22',
+    })
+    .then(({ data }) => data);
+};
+
+export const addToFavorites = (imageId: string) => {
+  return instance
+    .post('favourites', {
+      image_id: imageId,
+      sub_id: 'ruslanK22',
+    })
+    .then(({ data }) => data);
+};
+
+export const fetchFavoritesImages = () => {
+  return instance.get('favourites?sub_id=ruslanK22').then(({ data }) => {
+    console.log(data);
+    return data;
+  });
 };

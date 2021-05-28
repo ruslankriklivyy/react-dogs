@@ -26,6 +26,7 @@ const GalleryPage = observer(() => {
   const [files, setFiles]: any = React.useState([]);
   const { galleryStore } = useRootStore();
   const [visibleUploadImage, setVisibleUploadImage] = React.useState(false);
+
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',
     onDrop: (acceptedFiles) => {
@@ -38,6 +39,11 @@ const GalleryPage = observer(() => {
       );
     },
   });
+
+  const onSendImage = () => {
+    galleryStore.sendImage(files[0]);
+    setFiles([]);
+  };
 
   const onPlusCurrentPage = () => {
     galleryStore.setCurrentPage(galleryStore.currentPage + 1);
@@ -121,7 +127,7 @@ const GalleryPage = observer(() => {
                       <div className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}>
                         <div className="breeds-dogs__box">
                           <div className="breeds-dogs__blockout">
-                            <button>
+                            <button onClick={() => galleryStore.addImageToFavorites(item.id)}>
                               <svg
                                 width="30"
                                 height="26"
@@ -165,24 +171,25 @@ const GalleryPage = observer(() => {
               Any uploads must comply with the upload guidelines or face deletion.
             </p>
             <div className="upload-block">
-              <div {...getRootProps({ className: 'dropzone' })}>
-                <input {...getInputProps()} />
-                <div className="upload-action">
-                  <span>
-                    <strong>Drag here</strong> your file or <strong>Click here</strong> to upload
-                  </span>
-                </div>
-              </div>
               {files.length ? (
                 <div className="upload-preview">
                   <img src={files[0]?.preview} alt="" />
                 </div>
-              ) : null}
+              ) : (
+                <div {...getRootProps({ className: 'dropzone' })}>
+                  <input {...getInputProps()} />
+                  <div className="upload-action">
+                    <span>
+                      <strong>Drag here</strong> your file or <strong>Click here</strong> to upload
+                    </span>
+                  </div>
+                </div>
+              )}
             </div>
             <div className="upload-noselected">
               {files.length ? <span>{files[0]?.path}</span> : <span>No file selected</span>}
             </div>
-            <Button>Upload Photo</Button>
+            <Button onClick={() => onSendImage()}>Upload Photo</Button>
           </div>
         </div>
       )}

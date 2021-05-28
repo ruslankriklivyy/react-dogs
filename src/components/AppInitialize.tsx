@@ -10,7 +10,15 @@ import closeEyeSvg from '../assets/img/close-eye.svg';
 
 import { Link, Route, useLocation } from 'react-router-dom';
 import { Promo } from '../components';
-import { BreedsPage, DogPage, GalleryPage, VotePage } from '../pages';
+import {
+  BreedsPage,
+  DislikesPage,
+  DogPage,
+  FavoritesPage,
+  GalleryPage,
+  LikesPage,
+  VotePage,
+} from '../pages';
 import { observer } from 'mobx-react-lite';
 import { useRootStore } from '../store/RootState.Context';
 
@@ -98,6 +106,9 @@ const AppInitialize = observer(() => {
             <Route path="/breeds" component={BreedsPage} exact />
             <Route path="/breeds/dog" component={DogPage} exact />
             <Route path="/gallery" component={GalleryPage} />
+            <Route path="/likes" component={LikesPage} />
+            <Route path="/dislikes" component={DislikesPage} />
+            <Route path="/favorites" component={FavoritesPage} />
           </div>
         </div>
       </div>
