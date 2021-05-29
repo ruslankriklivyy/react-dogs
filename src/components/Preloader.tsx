@@ -1,10 +1,12 @@
-import { observer } from 'mobx-react-lite';
 import React from 'react';
-import loaderGif from '../assets/img/loader.gif';
-import loaderDarkGif from '../assets/img/loader-dark.gif';
+import { observer } from 'mobx-react-lite';
+
 import { useRootStore } from '../store/RootState.Context';
 
-const Prelaoder = observer(() => {
+import loaderGif from '../assets/img/loader.gif';
+import loaderDarkGif from '../assets/img/loader-dark.gif';
+
+const Preloader = observer(() => {
   const { dogsStore } = useRootStore();
 
   return (
@@ -18,4 +20,4 @@ const Prelaoder = observer(() => {
   );
 });
 
-export default Prelaoder;
+export default Preloader;

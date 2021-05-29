@@ -1,5 +1,5 @@
 import React from 'react';
-import { useRootStore } from '../store/RootState.Context';
+import { useRootStore } from '../../store/RootState.Context';
 
 const SortByBreeds = () => {
   const { filterStore } = useRootStore();

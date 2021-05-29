@@ -97,15 +97,31 @@
     grid-template-rows: repeat(29, 3vw);
     grid-gap: 1.5rem;
 
+    &--1,
+    &--2,
+    &--3,
+    &--4,
     &--5 {
       grid-template-rows: repeat(7, 3vw);
     }
+    &--6,
+    &--7,
+    &--8,
+    &--9,
     &--10 {
       grid-template-rows: repeat(14, 3vw);
     }
+    &--11,
+    &--12,
+    &--13,
+    &--14,
     &--15 {
       grid-template-rows: repeat(21, 3vw);
     }
+    &--16,
+    &--17,
+    &--18,
+    &--19,
     &--20 {
       grid-template-rows: repeat(28, 3vw);
     }

@@ -4,9 +4,7 @@ import {
   BreedsOrder,
   Button,
   Paginate,
-  Prelaoder,
-  SortByBreeds,
-  SortByLimit,
+  Preloader,
   SortByTitle,
   TopSort,
 } from '../components';
@@ -117,7 +115,7 @@ const BreedsPage = observer(() => {
             />
           </>
         ) : (
-          <Prelaoder />
+          <Preloader />
         )}
       </div>
     </div>

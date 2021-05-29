@@ -1,9 +1,10 @@
 import { observable, action, makeAutoObservable } from 'mobx';
-import { fetchCurrentVoteImageApi } from '../api/api';
+import { fetchCurrentVoteImageFromApi } from '../api/api';
+import { IDogsImages } from '../interfaces/interfaces';
 
 export class VoteStore {
   @observable
-  currentVoteImage: any = [];
+  currentVoteImage: IDogsImages[] = [];
   currentPage: number = 0;
   isFetching: boolean = false;
 
@@ -14,7 +15,7 @@ export class VoteStore {
   @action
   getCurrentVoteImage = (currentPage: number) => {
     this.isFetching = false;
-    fetchCurrentVoteImageApi(currentPage)
+    fetchCurrentVoteImageFromApi(currentPage)
       .then((data) => (this.currentVoteImage = data))
       .finally(() => (this.isFetching = true));
   };

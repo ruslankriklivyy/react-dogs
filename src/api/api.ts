@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IBreeds, IDogsImages } from '../interfaces/interfaces';
+import { IBreeds, IDogsImages, IFavoritesImages } from '../interfaces/interfaces';
 
 const instance = axios.create({
   baseURL: 'https://api.thedogapi.com/v1/',
@@ -8,11 +8,11 @@ const instance = axios.create({
   },
 });
 
-export const fetchDogs = (breedId: number | null): Promise<IDogsImages[]> => {
+export const fetchDogsFromApi = (breedId: number | null): Promise<IDogsImages[]> => {
   return instance.get(`images/search?breed_id=${breedId}`).then(({ data }) => data);
 };
 
-export const fetchBreeds = (
+export const fetchBreedsFromApi = (
   breed: string,
   limit: number,
   order: string,
@@ -30,11 +30,11 @@ export const fetchBreeds = (
     .then(({ data }) => data);
 };
 
-export const fetchSortBreeds = (): Promise<IBreeds[]> => {
+export const fetchSortBreedsFromApi = (): Promise<IBreeds[]> => {
   return instance.get(`breeds?limit=10`).then(({ data }) => data);
 };
 
-export const fetchOneDog = (dogId: number | null) => {
+export const fetchOneDogFromApi = (dogId: number | null): Promise<IDogsImages[]> => {
   return instance.get(`images/search?breed_id=${dogId}`).then(({ data }) => data);
 };
 
@@ -44,7 +44,7 @@ export const fetchGalleryFromApi = (
   type: string,
   currentBreedId: number | null,
   currentPage: number,
-) => {
+): Promise<IDogsImages[]> => {
   return instance
     .get(
       `images/search?limit=${limit}${type !== 'Random' ? `&mime_types=${type}` : ''}${
@@ -54,7 +54,7 @@ export const fetchGalleryFromApi = (
     .then(({ data }) => data);
 };
 
-export const sendDogImage = (image: any) => {
+export const sendDogImageFromApi = (image: any) => {
   return instance
     .post('images/upload', {
       file: image,
@@ -63,32 +63,21 @@ export const sendDogImage = (image: any) => {
     .then(({ data }) => data);
 };
 
-export const addToFavorites = (imageId: string) => {
-  return instance
-    .post('favourites', {
-      image_id: imageId,
-      sub_id: 'ruslanK22',
-    })
-    .then(({ data }) => data);
-};
-
-export const fetchFavoritesImages = () => {
-  return instance.get('favourites?sub_id=ruslanK22').then(({ data }) => {
-    console.log(data);
-    return data;
+export const addToFavoritesFromApi = (imageId: string) => {
+  return instance.post('favourites', {
+    image_id: imageId,
+    sub_id: 'ruslanK22',
   });
 };
 
-export const removeFavoriteImageApi = (imageId: string) => {
-  return instance.delete(`favourites/${imageId}`).then(({ data }) => {
-    console.log(data);
-    return data;
-  });
+export const fetchFavoritesImagesFromApi = (): Promise<IFavoritesImages[]> => {
+  return instance.get('favourites?sub_id=ruslanK22').then(({ data }) => data);
 };
 
-export const fetchCurrentVoteImageApi = (currentPage: number) => {
-  return instance.get(`images/search?page=${currentPage}`).then(({ data }) => {
-    console.log(data);
-    return data;
-  });
+export const removeFavoriteImageFromApi = (imageId: string) => {
+  return instance.delete(`favourites/${imageId}`).then(({ data }) => data);
+};
+
+export const fetchCurrentVoteImageFromApi = (currentPage: number): Promise<IDogsImages[]> => {
+  return instance.get(`images/search?page=${currentPage}`).then(({ data }) => data);
 };

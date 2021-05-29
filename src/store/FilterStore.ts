@@ -1,5 +1,5 @@
 import { observable, action, makeAutoObservable } from 'mobx';
-import { fetchBreeds, fetchSortBreeds } from '../api/api';
+import { fetchBreedsFromApi, fetchSortBreedsFromApi } from '../api/api';
 import { IBreeds } from '../interfaces/interfaces';
 
 export class FilterStore {
@@ -27,7 +27,7 @@ export class FilterStore {
     currentPage: number,
   ) => {
     this.isFetching = false;
-    fetchBreeds(breed, limit, order, searchQuery, currentPage)
+    fetchBreedsFromApi(breed, limit, order, searchQuery, currentPage)
       .then((data) => (this.breeds = data))
       .finally(() => (this.isFetching = true));
   };
@@ -44,7 +44,7 @@ export class FilterStore {
 
   @action
   fetchSortBreeds = () => {
-    fetchSortBreeds().then((data) => (this.sortBreeds = data));
+    fetchSortBreedsFromApi().then((data) => (this.sortBreeds = data));
   };
 
   @action

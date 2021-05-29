@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { BackBtn, Button, Prelaoder, TopSort } from '../components';
+import { BackBtn, Button, Preloader, TopSort } from '../components';
 import { useRootStore } from '../store/RootState.Context';
 
 const DogPage = observer(() => {
@@ -53,7 +53,7 @@ const DogPage = observer(() => {
               </div>
             </>
           ) : (
-            <Prelaoder />
+            <Preloader />
           )}
         </div>
       </div>

@@ -1,7 +1,9 @@
 import React from 'react';
-import { useRootStore } from '../store/RootState.Context';
-import downArrowSvg from '../assets/img/down-arrow.svg';
 import { observer } from 'mobx-react-lite';
+
+import { useRootStore } from '../../store/RootState.Context';
+
+import downArrowSvg from '../../assets/img/down-arrow.svg';
 
 const numArr = [5, 10, 15, 20];
 

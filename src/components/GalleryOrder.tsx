@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 
-import downArrowSvg from '../../assets/img/down-arrow.svg';
-import { useRootStore } from '../../store/RootState.Context';
+import downArrowSvg from '../assets/img/down-arrow.svg';
+import { useRootStore } from '../store/RootState.Context';
 
 interface IGalleryOrder {
   sortBy: string;

@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
 
-import { BackBtn, Button, Prelaoder, TopSort, VoteHistory } from '../components';
+import { BackBtn, Button, Preloader, TopSort, VoteHistory } from '../components';
 import { useRootStore } from '../store/RootState.Context';
 
 const iconsArr = [
@@ -117,7 +117,7 @@ const VotePage = observer(() => {
             </div>
           </>
         ) : (
-          <Prelaoder />
+          <Preloader />
         )}
       </div>
     </div>

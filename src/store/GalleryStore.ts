@@ -1,18 +1,18 @@
 import { action, makeAutoObservable, observable } from 'mobx';
 import {
-  addToFavorites,
-  fetchFavoritesImages,
+  addToFavoritesFromApi,
+  fetchFavoritesImagesFromApi,
   fetchGalleryFromApi,
-  removeFavoriteImageApi,
-  sendDogImage,
+  removeFavoriteImageFromApi,
+  sendDogImageFromApi,
 } from '../api/api';
-import { IDogsImages } from '../interfaces/interfaces';
+import { IDogsImages, IFavoritesImages } from '../interfaces/interfaces';
 
 export class GalleryStore {
   @observable
   gallery: IDogsImages[] = [];
   currentBreed: string = 'Random';
-  favoritesImages: any = [];
+  favoritesImages: IFavoritesImages[] = [];
   currentBreedId: number | null = null;
   order: string = 'Random';
   type: string = 'Random';
@@ -70,24 +70,24 @@ export class GalleryStore {
 
   @action
   sendImage = (image: any) => {
-    sendDogImage(image);
+    sendDogImageFromApi(image);
   };
 
   @action
   addImageToFavorites = (imageId: string) => {
-    addToFavorites(imageId);
+    addToFavoritesFromApi(imageId);
   };
 
   @action
   getFavoritesImage = () => {
     this.isFetching = false;
-    fetchFavoritesImages()
+    fetchFavoritesImagesFromApi()
       .then((data) => (this.favoritesImages = data))
       .finally(() => (this.isFetching = true));
   };
 
   @action
   removeFavoriteImage = (imageId: string) => {
-    removeFavoriteImageApi(imageId);
+    removeFavoriteImageFromApi(imageId);
   };
 }

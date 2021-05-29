@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { BackBtn, Button, EmptyItems, Prelaoder, TopSort, VoteHistory } from '../components';
+import { BackBtn, Button, EmptyItems, Preloader, TopSort, VoteHistory } from '../components';
 import { useRootStore } from '../store/RootState.Context';
 
 const FavoritesPage = observer(() => {
@@ -26,8 +26,8 @@ const FavoritesPage = observer(() => {
           {!galleryStore.favoritesImages.length && galleryStore.isFetching && <EmptyItems />}
           {galleryStore.isFetching ? (
             <>
-              <div className={`breeds-dogs breeds-dogs--${galleryStore.limit}`}>
-                {galleryStore.favoritesImages.map((item: any, index: number) => (
+              <div className={`breeds-dogs breeds-dogs--${galleryStore.favoritesImages.length}`}>
+                {galleryStore.favoritesImages.map((item, index) => (
                   <div className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}>
                     <div className="breeds-dogs__box">
                       <div className="breeds-dogs__blockout">
@@ -59,7 +59,7 @@ const FavoritesPage = observer(() => {
               </div>
             </>
           ) : (
-            <Prelaoder />
+            <Preloader />
           )}
         </div>
       </div>

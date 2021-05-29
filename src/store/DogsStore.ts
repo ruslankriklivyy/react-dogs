@@ -1,5 +1,5 @@
 import { observable, action, makeAutoObservable } from 'mobx';
-import { fetchDogs, fetchOneDog } from '../api/api';
+import { fetchDogsFromApi, fetchOneDogFromApi } from '../api/api';
 import { IDogsImages } from '../interfaces/interfaces';
 
 export class DogsStore {
@@ -16,13 +16,13 @@ export class DogsStore {
 
   @action
   fetchDogsPhotos = (breedId: number | null) => {
-    fetchDogs(breedId).then((data) => (this.dogsPhotos = data));
+    fetchDogsFromApi(breedId).then((data) => (this.dogsPhotos = data));
   };
 
   @action
   fetchOneDog = (dogId: number | null) => {
     this.isFetching = false;
-    fetchOneDog(dogId)
+    fetchOneDogFromApi(dogId)
       .then((data) => (this.oneDog = data))
       .finally(() => (this.isFetching = true));
   };

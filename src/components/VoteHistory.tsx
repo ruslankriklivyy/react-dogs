@@ -11,7 +11,7 @@ const VoteHistory: React.FC<IVoteHistory> = ({ time, imageId }) => {
     <div className="vote-history__item">
       <span>{getCreatedTime(time)}</span>
       <p>
-        Image ID: <strong>{imageId}</strong> was added to Favourites
+        Image ID: <strong>{imageId}</strong> was added to Favorites
       </p>
       <svg
         width="30"

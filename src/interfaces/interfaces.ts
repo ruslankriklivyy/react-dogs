@@ -34,3 +34,17 @@ export interface IDogsImages {
   url: string;
   width: number;
 }
+
+export interface IFavoritesImage {
+  id: string;
+  url: string;
+}
+
+export interface IFavoritesImages {
+  id: string;
+  user_id: string;
+  image_id: string;
+  sub_id: string;
+  created_at: string;
+  image: IFavoritesImage;
+}

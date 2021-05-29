@@ -5,7 +5,7 @@ import {
   Button,
   GalleryOrder,
   Paginate,
-  Prelaoder,
+  Preloader,
   SortByLimit,
   TopSort,
 } from '../components';
@@ -21,6 +21,10 @@ const galleryOrder = [
   { id: 2, by: 'Type' },
   { id: 3, by: 'Breed' },
 ];
+
+interface IFile {
+  preview: string;
+}
 
 const GalleryPage = observer(() => {
   const [files, setFiles]: any = React.useState([]);
@@ -39,6 +43,11 @@ const GalleryPage = observer(() => {
       );
     },
   });
+
+  const onCloseUploadImage = () => {
+    setVisibleUploadImage(false);
+    setFiles([]);
+  };
 
   const onSendImage = () => {
     galleryStore.sendImage(files[0]);
@@ -77,7 +86,7 @@ const GalleryPage = observer(() => {
 
   React.useEffect(
     () => () => {
-      files.forEach((file: any) => URL.revokeObjectURL(file.preview));
+      files.forEach((file: IFile) => URL.revokeObjectURL(file.preview));
     },
     [files],
   );
@@ -155,7 +164,7 @@ const GalleryPage = observer(() => {
                   />
                 </>
               ) : (
-                <Prelaoder />
+                <Preloader />
               )}
             </div>
           </div>
@@ -163,7 +172,7 @@ const GalleryPage = observer(() => {
       ) : (
         <div className="upload-box">
           <div className="box-white">
-            <button className="upload-close" onClick={() => setVisibleUploadImage(false)}>
+            <button className="upload-close" onClick={() => onCloseUploadImage()}>
               <img src={closeSvg} alt="close svg" />
             </button>
             <h2 className="upload-title">Upload a .jpg or .png Dog Image</h2>
