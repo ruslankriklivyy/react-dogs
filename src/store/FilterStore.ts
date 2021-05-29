@@ -1,4 +1,4 @@
-import { observable, action, makeObservable } from 'mobx';
+import { observable, action, makeAutoObservable } from 'mobx';
 import { fetchBreeds, fetchSortBreeds } from '../api/api';
 import { IBreeds } from '../interfaces/interfaces';
 
@@ -15,24 +15,7 @@ export class FilterStore {
   currentPage: number = 0;
 
   constructor() {
-    makeObservable(this, {
-      breeds: observable,
-      currentBreed: observable,
-      sortBreeds: observable,
-      isFetching: observable,
-      limitBreeds: observable,
-      orderType: observable,
-      searchQuery: observable,
-      currentPage: observable,
-      fetchBreedsList: action,
-      setCurrentBreed: action,
-      setBreedId: action,
-      fetchSortBreeds: action,
-      setLimitBreeds: action,
-      setOrderType: action,
-      setSearchQuery: action,
-      setCurrentPage: action,
-    });
+    makeAutoObservable(this);
   }
 
   @action

@@ -78,3 +78,17 @@ export const fetchFavoritesImages = () => {
     return data;
   });
 };
+
+export const removeFavoriteImageApi = (imageId: string) => {
+  return instance.delete(`favourites/${imageId}`).then(({ data }) => {
+    console.log(data);
+    return data;
+  });
+};
+
+export const fetchCurrentVoteImageApi = (currentPage: number) => {
+  return instance.get(`images/search?page=${currentPage}`).then(({ data }) => {
+    console.log(data);
+    return data;
+  });
+};

@@ -1,4 +1,4 @@
-import { observable, action, makeObservable } from 'mobx';
+import { observable, action, makeAutoObservable } from 'mobx';
 import { fetchDogs, fetchOneDog } from '../api/api';
 import { IDogsImages } from '../interfaces/interfaces';
 
@@ -11,15 +11,7 @@ export class DogsStore {
   isDarkMode: boolean = false;
 
   constructor() {
-    makeObservable(this, {
-      dogsPhotos: observable,
-      oneDog: observable,
-      isFetching: observable,
-      isDarkMode: observable,
-      fetchDogsPhotos: action,
-      setDogId: action,
-      setDarkMode: action,
-    });
+    makeAutoObservable(this);
   }
 
   @action
@@ -43,5 +35,6 @@ export class DogsStore {
   @action
   setDarkMode = (darkMode: boolean) => {
     this.isDarkMode = darkMode;
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
   };
 }

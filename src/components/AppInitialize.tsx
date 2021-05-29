@@ -32,11 +32,23 @@ const AppInitialize = observer(() => {
   let location = useLocation();
   const { dogsStore } = useRootStore();
 
-  React.useEffect(() => {
+  const onSetMode = () => {
+    dogsStore.setDarkMode(!dogsStore.isDarkMode);
+
     dogsStore.isDarkMode
       ? document.querySelector<HTMLElement>('body')?.classList.add('dark')
       : document.querySelector<HTMLElement>('body')?.classList.remove('dark');
-  }, [dogsStore.isDarkMode]);
+  };
+
+  React.useEffect(() => {
+    if (localStorage.getItem('darkMode')) {
+      const isDarkMode = localStorage.getItem('darkMode');
+      dogsStore.setDarkMode(JSON.parse(isDarkMode || ''));
+      dogsStore.isDarkMode
+        ? document.querySelector<HTMLElement>('body')?.classList.add('dark')
+        : document.querySelector<HTMLElement>('body')?.classList.remove('dark');
+    }
+  }, [dogsStore]);
 
   return (
     <div className="box">
@@ -64,7 +76,7 @@ const AppInitialize = observer(() => {
                     'toggle-mode__btn': !dogsStore.isDarkMode,
                     'toggle-mode__btn dark': dogsStore.isDarkMode,
                   })}
-                  onClick={() => dogsStore.setDarkMode(!dogsStore.isDarkMode)}>
+                  onClick={() => onSetMode()}>
                   <span></span>
                 </button>
               </div>

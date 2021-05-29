@@ -11,3 +11,4 @@ export { default as GalleryOrder } from './Gallery/GalleryOrder';
 export { default as BreedsOrder } from './BreedsOrder';
 export { default as AppInitialize } from './AppInitialize';
 export { default as EmptyItems } from './EmptyItems';
+export { default as VoteHistory } from './VoteHistory';

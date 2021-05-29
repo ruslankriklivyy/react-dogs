@@ -1,12 +1,14 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { BackBtn, Button, EmptyItems, Prelaoder, TopSort } from '../components';
+import { BackBtn, Button, EmptyItems, Prelaoder, TopSort, VoteHistory } from '../components';
 import { useRootStore } from '../store/RootState.Context';
 
 const FavoritesPage = observer(() => {
   const { galleryStore } = useRootStore();
 
-  console.log(galleryStore);
+  const removeImageFromFavorites = (imageId: string) => {
+    galleryStore.removeFavoriteImage(imageId);
+  };
 
   React.useEffect(() => {
     galleryStore.getFavoritesImage();
@@ -21,15 +23,15 @@ const FavoritesPage = observer(() => {
           <Button>Favorites</Button>
         </div>
         <div>
+          {!galleryStore.favoritesImages.length && galleryStore.isFetching && <EmptyItems />}
           {galleryStore.isFetching ? (
             <>
               <div className={`breeds-dogs breeds-dogs--${galleryStore.limit}`}>
                 {galleryStore.favoritesImages.map((item: any, index: number) => (
                   <div className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}>
-                    {console.log(item)}
                     <div className="breeds-dogs__box">
                       <div className="breeds-dogs__blockout">
-                        <button onClick={() => galleryStore.addImageToFavorites(item.id)}>
+                        <button onClick={() => removeImageFromFavorites(item.id)}>
                           <svg
                             width="30"
                             height="26"
@@ -50,12 +52,16 @@ const FavoritesPage = observer(() => {
                   </div>
                 ))}
               </div>
+              <div className="vote-history">
+                {galleryStore?.favoritesImages.map((item: any) => (
+                  <VoteHistory time={item.created_at} imageId={item.image_id} />
+                ))}
+              </div>
             </>
           ) : (
             <Prelaoder />
           )}
         </div>
-        {/* <EmptyItems /> */}
       </div>
     </div>
   );

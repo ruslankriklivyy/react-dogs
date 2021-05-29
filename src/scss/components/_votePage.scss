@@ -10,7 +10,9 @@
       position: relative;
       border-radius: 20px;
       img {
+        width: 100%;
         height: 360px;
+        object-fit: cover;
         border-radius: 20px;
       }
     }
@@ -48,6 +50,7 @@
   &-history {
     margin-top: 50px;
     &__item {
+      margin-top: 20px;
       padding: 12px;
       display: flex;
       align-items: center;
