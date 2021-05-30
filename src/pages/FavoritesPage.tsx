@@ -1,6 +1,14 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { BackBtn, Button, EmptyItems, Preloader, TopSort, VoteHistory } from '../components';
+import {
+  BackBtn,
+  Button,
+  EmptyItems,
+  Paginate,
+  Preloader,
+  TopSort,
+  VoteHistory,
+} from '../components';
 import { useRootStore } from '../store/RootState.Context';
 
 const FavoritesPage = observer(() => {
@@ -11,18 +19,18 @@ const FavoritesPage = observer(() => {
   };
 
   React.useEffect(() => {
-    galleryStore.getFavoritesImage();
-  }, [galleryStore]);
+    galleryStore.getFavoritesImage(galleryStore.favoritesCurrentPage);
+  }, [galleryStore, galleryStore.favoritesCurrentPage]);
 
   return (
-    <div>
+    <>
       <TopSort />
       <div className="box-white">
         <div className="evaluation-top">
           <BackBtn />
           <Button>Favorites</Button>
         </div>
-        <div>
+        <div className="favorites">
           {!galleryStore.favoritesImages.length && galleryStore.isFetching && <EmptyItems />}
           {galleryStore.isFetching ? (
             <>
@@ -52,8 +60,14 @@ const FavoritesPage = observer(() => {
                   </div>
                 ))}
               </div>
+              {galleryStore.favoritesImages.length > 5 && (
+                <Paginate
+                  currentPage={galleryStore.favoritesCurrentPage}
+                  setCurrentPage={galleryStore.setFavoritesCurrentPage}
+                />
+              )}
               <div className="vote-history">
-                {galleryStore?.favoritesImages.map((item: any) => (
+                {galleryStore?.favoritesImages.map((item) => (
                   <VoteHistory time={item.created_at} imageId={item.image_id} />
                 ))}
               </div>
@@ -63,7 +77,7 @@ const FavoritesPage = observer(() => {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 });
 

@@ -19,6 +19,7 @@ export class GalleryStore {
   limit: number = 5;
   isFetching: boolean = false;
   currentPage: number = 0;
+  favoritesCurrentPage: number = 0;
 
   constructor() {
     makeAutoObservable(this);
@@ -79,9 +80,9 @@ export class GalleryStore {
   };
 
   @action
-  getFavoritesImage = () => {
+  getFavoritesImage = (currentPage?: number) => {
     this.isFetching = false;
-    fetchFavoritesImagesFromApi()
+    fetchFavoritesImagesFromApi(currentPage)
       .then((data) => (this.favoritesImages = data))
       .finally(() => (this.isFetching = true));
   };
@@ -89,5 +90,10 @@ export class GalleryStore {
   @action
   removeFavoriteImage = (imageId: string) => {
     removeFavoriteImageFromApi(imageId);
+  };
+
+  @action
+  setFavoritesCurrentPage = (currentPage: number) => {
+    this.favoritesCurrentPage = currentPage;
   };
 }

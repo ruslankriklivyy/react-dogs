@@ -1,5 +1,5 @@
 import React from 'react';
-import { IBreeds } from '../interfaces/interfaces';
+import { IBreeds } from '../../interfaces/interfaces';
 
 const numArr = [5, 10, 15, 20];
 

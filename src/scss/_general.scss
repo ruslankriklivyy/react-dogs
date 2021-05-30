@@ -36,6 +36,7 @@
   strong {
     font-weight: 500;
     color: #1d1d1d;
+    margin-left: 5px;
   }
 }
 
@@ -419,6 +420,11 @@ body {
     .empty-items {
       background: rgba(255, 255, 255, 0.05);
     }
+    .current-breeds {
+      strong {
+        color: #fff;
+      }
+    }
     .sortby-breeds,
     .sortby-limit,
     .sortby-az,
@@ -440,5 +446,14 @@ body {
   padding: 22px 40px;
   p {
     color: #8c8c8c;
+  }
+}
+
+.favorites {
+  .paginate {
+    margin-top: 20px;
+  }
+  .vote-history {
+    margin-top: 0;
   }
 }

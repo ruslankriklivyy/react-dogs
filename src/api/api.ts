@@ -70,8 +70,12 @@ export const addToFavoritesFromApi = (imageId: string) => {
   });
 };
 
-export const fetchFavoritesImagesFromApi = (): Promise<IFavoritesImages[]> => {
-  return instance.get('favourites?sub_id=ruslanK22').then(({ data }) => data);
+export const fetchFavoritesImagesFromApi = (
+  currentPage: number | undefined,
+): Promise<IFavoritesImages[]> => {
+  return instance
+    .get(`favourites?sub_id=ruslanK22${currentPage !== undefined ? `&page=${currentPage}` : ''}`)
+    .then(({ data }) => data);
 };
 
 export const removeFavoriteImageFromApi = (imageId: string) => {

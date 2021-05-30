@@ -22,6 +22,7 @@ const AppInitialize = observer(() => {
   React.useEffect(() => {
     if (localStorage.getItem('darkMode')) {
       const isDarkMode = localStorage.getItem('darkMode');
+
       dogsStore.setDarkMode(JSON.parse(isDarkMode || ''));
       dogsStore.isDarkMode
         ? document.querySelector<HTMLElement>('body')?.classList.add('dark')

@@ -1,9 +1,5 @@
-import { observer } from 'mobx-react-lite';
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-import searchSvg from '../assets/img/search.svg';
-import { useRootStore } from '../store/RootState.Context';
 
 const iconsArr = [
   {
@@ -68,41 +64,16 @@ const iconsArr = [
   },
 ];
 
-const TopSort = observer(() => {
-  const [inputValue, setInputValue] = React.useState('');
-  const { filterStore } = useRootStore();
-
-  const onHandleSearchValue = (e: any) => {
-    if (e.key === 'Enter') {
-      filterStore.setSearchQuery(inputValue);
-    }
-  };
-
+const SortAddedImages = () => {
   return (
     <>
-      <div className="vote__top">
-        <div className="breeds__search">
-          <input
-            type="text"
-            placeholder="Search for breeds by name"
-            value={inputValue}
-            onKeyDown={(e) => onHandleSearchValue(e)}
-            onChange={(e) => setInputValue(e.target.value)}
-          />
-          <button onClick={() => filterStore.setSearchQuery(inputValue)}>
-            <img src={searchSvg} alt="search svg" />
-          </button>
-        </div>
-        <div className="sort">
-          {iconsArr.map((item) => (
-            <Link to={`/${item.link}`} key={item.id}>
-              <button className="sort-btn">{item.img}</button>
-            </Link>
-          ))}
-        </div>
-      </div>
+      {iconsArr.map((item) => (
+        <Link to={`/${item.link}`} key={item.id}>
+          <button className="sort-btn">{item.img}</button>
+        </Link>
+      ))}
     </>
   );
-});
+};
 
-export default TopSort;
+export default React.memo(SortAddedImages);

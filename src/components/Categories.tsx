@@ -33,4 +33,4 @@ const Categories: React.FC<ICategories> = ({ img, link, color, id, title }) => {
   );
 };
 
-export default Categories;
+export default React.memo(Categories);

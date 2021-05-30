@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   BackBtn,
+  BreedItem,
   BreedsOrder,
   Button,
   Paginate,
@@ -11,20 +12,9 @@ import {
 import { useRootStore } from '../store/RootState.Context';
 
 import { observer } from 'mobx-react-lite';
-import { Link } from 'react-router-dom';
 
 const BreedsPage = observer(() => {
   const { filterStore, dogsStore } = useRootStore();
-
-  const onPlusCurrentPage = () => {
-    filterStore.setCurrentPage(filterStore.currentPage + 1);
-  };
-
-  const onMinusCurrentPage = () => {
-    if (filterStore.currentPage > 0) {
-      filterStore.setCurrentPage(filterStore.currentPage - 1);
-    }
-  };
 
   const onSelectDog = (id: number) => {
     dogsStore.setDogId(id);
@@ -34,9 +24,14 @@ const BreedsPage = observer(() => {
     filterStore.setLimitBreeds(limit);
   };
 
+  const clearSearchQuery = () => {
+    filterStore.setSearchQuery('');
+  };
+
   const onSelectCurrentBreed = (name: string, id: number) => {
     filterStore.setBreedId(id);
     filterStore.setCurrentBreed(name);
+    clearSearchQuery();
   };
 
   React.useEffect(() => {
@@ -70,7 +65,7 @@ const BreedsPage = observer(() => {
       <div className="box-white">
         <div className="breeds-top">
           <BackBtn />
-          <Button>Breeds</Button>
+          <Button onClick={clearSearchQuery}>Breeds</Button>
           <BreedsOrder
             items={filterStore.sortBreeds}
             currentBreed={filterStore.currentBreed}
@@ -95,22 +90,18 @@ const BreedsPage = observer(() => {
           <>
             <div className={`breeds-dogs breeds-dogs--${filterStore.limitBreeds}`}>
               {filterStore.breeds.map((item, index) => (
-                <Link
-                  to="/breeds/dog"
-                  className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}
-                  onClick={() => onSelectDog(item.id)}>
-                  <div className="breeds-dogs__box">
-                    <div className="breeds-dogs__blockout">
-                      <span>{item.name}</span>
-                    </div>
-                    <img src={item.image?.url ?? dogsStore.dogsPhotos[0]?.url} alt="dog jpg" />
-                  </div>
-                </Link>
+                <BreedItem
+                  index={index}
+                  name={item.name}
+                  onSelectDog={onSelectDog}
+                  image={item.image}
+                  id={item.id}
+                  dogsPhotos={dogsStore.dogsPhotos}
+                />
               ))}
             </div>
             <Paginate
-              onPlusCurrentPage={onPlusCurrentPage}
-              onMinusCurrentPage={onMinusCurrentPage}
+              setCurrentPage={filterStore.setCurrentPage}
               currentPage={filterStore.currentPage}
             />
           </>
@@ -122,4 +113,4 @@ const BreedsPage = observer(() => {
   );
 });
 
-export default BreedsPage;
+export default React.memo(BreedsPage);

@@ -54,16 +54,6 @@ const GalleryPage = observer(() => {
     setFiles([]);
   };
 
-  const onPlusCurrentPage = () => {
-    galleryStore.setCurrentPage(galleryStore.currentPage + 1);
-  };
-
-  const onMinusCurrentPage = () => {
-    if (galleryStore.currentPage > 0) {
-      galleryStore.setCurrentPage(galleryStore.currentPage - 1);
-    }
-  };
-
   const onSend = () => {
     galleryStore.fetchGallery(
       galleryStore.order,
@@ -158,8 +148,7 @@ const GalleryPage = observer(() => {
                     ))}
                   </div>
                   <Paginate
-                    onPlusCurrentPage={onPlusCurrentPage}
-                    onMinusCurrentPage={onMinusCurrentPage}
+                    setCurrentPage={galleryStore.setCurrentPage}
                     currentPage={galleryStore.currentPage}
                   />
                 </>
