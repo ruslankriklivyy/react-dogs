@@ -19,8 +19,8 @@ const Intro = () => {
       <h2 className="intro__suptitle">Lets start using React Dogs</h2>
       <nav className="navigation">
         <ul className="menu">
-          {menuArr.map((item) => (
-            <Categories {...item} />
+          {menuArr.map((item, index) => (
+            <Categories key={index} {...item} />
           ))}
         </ul>
       </nav>

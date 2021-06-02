@@ -91,6 +91,7 @@ const BreedsPage = observer(() => {
             <div className={`breeds-dogs breeds-dogs--${filterStore.limitBreeds}`}>
               {filterStore.breeds.map((item, index) => (
                 <BreedItem
+                  key={item.id}
                   index={index}
                   name={item.name}
                   onSelectDog={onSelectDog}

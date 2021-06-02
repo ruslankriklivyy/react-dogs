@@ -81,7 +81,7 @@ const VotePage = observer(() => {
 
   React.useEffect(() => {
     galleryStore.getFavoritesImage();
-  }, [galleryStore, galleryStore.favoritesImages]);
+  }, [galleryStore]);
 
   return (
     <div className="vote">
@@ -110,8 +110,8 @@ const VotePage = observer(() => {
             </div>
             <div className="vote-history">
               <div className="vote-history">
-                {galleryStore?.favoritesImages.map((item: any) => (
-                  <VoteHistory time={item.created_at} imageId={item.image_id} />
+                {galleryStore?.favoritesImages.map((item: any, index) => (
+                  <VoteHistory key={index} time={item.created_at} imageId={item.image_id} />
                 ))}
               </div>
             </div>
