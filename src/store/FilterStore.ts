@@ -2,6 +2,10 @@ import { observable, action, makeAutoObservable } from 'mobx';
 import { fetchBreedsFromApi, fetchSortBreedsFromApi } from '../api/api';
 import { IBreeds } from '../interfaces/interfaces';
 
+import voteTablePng from '../assets/img/vote-table.png';
+import petBreedsPng from '../assets/img/pet-breeds.png';
+import galleryPng from '../assets/img/images-search.png';
+
 export class FilterStore {
   @observable
   breeds: IBreeds[] = [];
@@ -13,6 +17,11 @@ export class FilterStore {
   searchQuery: string = '';
   isFetching: boolean = false;
   currentPage: number = 0;
+  menuCategories: any = [
+    { id: 1, title: 'Voting', img: voteTablePng, color: '#B4B7FF', link: 'vote' },
+    { id: 2, title: 'BREEDS', img: petBreedsPng, color: '#97EAB9', link: 'breeds' },
+    { id: 3, title: 'gallery', img: galleryPng, color: '#FFD280', link: 'gallery' },
+  ];
 
   constructor() {
     makeAutoObservable(this);

@@ -8,13 +8,14 @@ interface ICategories {
   color: string;
   id: number;
   title: string;
+  closeMenu?: () => void;
 }
 
-const Categories: React.FC<ICategories> = ({ img, link, color, id, title }) => {
+const Categories: React.FC<ICategories> = ({ img, link, color, id, title, closeMenu }) => {
   let location = useLocation();
 
   return (
-    <li key={id} className="menu__item">
+    <li key={id} className="menu__item" onClick={closeMenu}>
       <Link
         to={`/${link}`}
         className={classNames({

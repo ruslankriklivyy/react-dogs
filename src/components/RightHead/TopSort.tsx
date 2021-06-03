@@ -1,4 +1,5 @@
 import React from 'react';
+import { MobileMenu } from '..';
 
 import SearchBreeds from './SearchBreeds';
 import SortAddedImages from './SortAddedImages';
@@ -8,6 +9,7 @@ const TopSort = () => {
     <>
       <div className="vote__top">
         <SearchBreeds />
+        <MobileMenu />
         <div className="sort">
           <SortAddedImages />
         </div>

@@ -73,12 +73,14 @@ const BreedsPage = observer(() => {
             onSelectCurrentBreed={onSelectCurrentBreed}
             type={'All breeds'}
           />
-          <BreedsOrder
-            limit
-            onSelectLimitBreeds={onSelectLimitBreeds}
-            limitBreeds={filterStore.limitBreeds}
-          />
-          <SortByTitle />
+          <div className="breeds-sort-right">
+            <BreedsOrder
+              limit
+              onSelectLimitBreeds={onSelectLimitBreeds}
+              limitBreeds={filterStore.limitBreeds}
+            />
+            <SortByTitle />
+          </div>
         </div>
         {filterStore.searchQuery !== '' || filterStore.currentBreed !== 'All breeds' ? (
           <p className="current-breeds">

@@ -16,3 +16,4 @@ export { default as Intro } from './Intro';
 export { default as Categories } from './Categories';
 export { default as ToggleMode } from './ToggleMode';
 export { default as BreedItem } from './Breeds/BreedItem';
+export { default as MobileMenu } from './RightHead/MobileMenu';

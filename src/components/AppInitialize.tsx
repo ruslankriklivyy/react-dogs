@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch, useLocation } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
+import classNames from 'classnames';
 
 import { Intro, Preloader, ToggleMode } from '../components';
 import // BreedsPage,
@@ -25,6 +26,7 @@ const VotePage = React.lazy(() => import('../pages/VotePage'));
 const Promo = React.lazy(() => import('../components/Promo'));
 
 const AppInitialize = observer(() => {
+  const location = useLocation();
   const { dogsStore } = useRootStore();
 
   React.useEffect(() => {
@@ -42,7 +44,11 @@ const AppInitialize = observer(() => {
     <div className="box">
       <div className="container">
         <div className="box-wrapper">
-          <div className="left-section">
+          <div
+            className={classNames({
+              'left-section': location.pathname !== '/',
+              'left-section show': location.pathname === '/',
+            })}>
             <div className="top">
               <Link to="/">
                 <img src={logoSvg} alt="logo svg" />
@@ -51,7 +57,11 @@ const AppInitialize = observer(() => {
             </div>
             <Intro />
           </div>
-          <div className="right-section">
+          <div
+            className={classNames({
+              'right-section show': location.pathname !== '/',
+              'right-section': location.pathname === '/',
+            })}>
             <Suspense fallback={<Preloader />}>
               <Switch>
                 <Route path="/breeds" component={BreedsPage} exact />

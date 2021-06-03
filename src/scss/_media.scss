@@ -1,0 +1,198 @@
+@media (max-width: 1200px) {
+  .gallery-sort__button {
+    width: 250px;
+  }
+  .gallery-sort__item--limit .gallery-sort__button {
+    width: 196px !important;
+  }
+  .breeds .sortby-breeds {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .breeds-top {
+    display: block;
+    .btn--upload {
+      margin-left: 10px;
+    }
+  }
+  .breeds-dogs {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    &__box {
+      width: 100%;
+    }
+    &__item {
+      justify-content: center;
+      width: 48%;
+      height: 250px;
+    }
+  }
+  .promo {
+    display: none;
+  }
+  .left-section {
+    display: none;
+    margin: 0 auto;
+    width: 100%;
+    padding-right: 0;
+    &.show {
+      display: block;
+    }
+  }
+  .sort {
+    justify-content: space-between;
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+  .mobile-menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .vote__top {
+    flex-direction: column-reverse;
+  }
+  .breeds__search {
+    width: 100%;
+    margin-top: 10px;
+  }
+  .right-section {
+    display: none;
+    width: 90%;
+    margin: 0 auto;
+    &.show {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 779px) {
+  .right-section {
+    width: 100%;
+  }
+}
+
+@media (max-width: 675px) {
+  .gallery-sort {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .breeds-dogs {
+    justify-content: center;
+    img {
+      margin: 0 auto;
+      width: 100%;
+    }
+    &__item {
+      width: 100%;
+      height: 340px;
+    }
+  }
+}
+
+@media (max-width: 578px) {
+  .dog-image img {
+    height: 295px;
+  }
+  .dog-info__bredfor {
+    line-height: 1.2;
+  }
+  .dog-info__bottom {
+    padding: 70px 25px;
+    padding-top: 110px;
+  }
+  .breeds-dogs {
+    &__item {
+      height: 260px;
+    }
+  }
+  .intro {
+    text-align: center;
+  }
+  .breeds__search {
+    input {
+      font-size: 18px;
+      &::placeholder {
+        font-size: 18px;
+      }
+    }
+  }
+  .navigation {
+    .menu {
+      flex-direction: column;
+      &__item {
+        margin-bottom: 15px;
+        margin-right: 0;
+      }
+    }
+    .menu__item-top {
+      display: none;
+    }
+  }
+  .vote-dog {
+    &__img {
+      img {
+        height: 270px;
+      }
+    }
+  }
+  .vote-actions {
+    width: 210px;
+    height: 65px;
+  }
+  .vote-history {
+    &__item {
+      text-align: center;
+      display: block;
+      height: auto;
+      min-height: 105px;
+      svg {
+        margin: 0 auto;
+      }
+      span {
+        margin: 0 auto;
+      }
+      p {
+        margin: 10px 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .dog-info__bottom {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .dog-info__item {
+    margin: 0 auto;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .breeds-top {
+    .btn--upload {
+      margin-top: 20px;
+    }
+  }
+}
+
+@media (max-width: 440px) {
+  .breeds-top {
+    .btn--upload {
+      margin-left: 0;
+    }
+  }
+}
+
+@media (max-width: 378px) {
+  .gallery-sort__item {
+    padding: 7px;
+  }
+  .gallery-sort__button {
+    width: 220px;
+  }
+  .gallery-sort__item--limit .gallery-sort__button {
+    width: 165px !important;
+  }
+}
