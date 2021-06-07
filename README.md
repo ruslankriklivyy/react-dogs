@@ -1,6 +1,6 @@
 ## React Dogs 🐶
 
-![Live demo](https://react-dogs-theta.vercel.app/)
+[Live demo](https://react-dogs-theta.vercel.app/)
 
 ![Header](https://github.com/ruslankriklivyy/react-dogs/blob/main/public/reactDogs.gif)
 
