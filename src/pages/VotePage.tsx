@@ -110,7 +110,7 @@ const VotePage = observer(() => {
             </div>
             <div className="vote-history">
               <div className="vote-history">
-                {galleryStore?.favoritesImages.map((item: any, index) => (
+                {galleryStore?.favoritesImages.map((item, index) => (
                   <VoteHistory key={index} time={item.created_at} imageId={item.image_id} />
                 ))}
               </div>

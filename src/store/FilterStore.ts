@@ -17,7 +17,7 @@ export class FilterStore {
   searchQuery: string = '';
   isFetching: boolean = false;
   currentPage: number = 0;
-  menuCategories: any = [
+  menuCategories = [
     { id: 1, title: 'Voting', img: voteTablePng, color: '#B4B7FF', link: 'vote' },
     { id: 2, title: 'BREEDS', img: petBreedsPng, color: '#97EAB9', link: 'breeds' },
     { id: 3, title: 'gallery', img: galleryPng, color: '#FFD280', link: 'gallery' },

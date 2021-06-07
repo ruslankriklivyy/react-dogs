@@ -2,13 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import emptyImagePng from '../../assets/img/empty-image.png';
-import { IBreedsImage } from '../../interfaces/interfaces';
+import { IBreedsImage, IDogsImages } from '../../interfaces/interfaces';
 
 interface IBreedItem {
   index: number;
   onSelectDog: (id: number) => void;
   image: IBreedsImage;
-  dogsPhotos: any;
+  dogsPhotos: IDogsImages[];
   name: string;
   id: number;
 }

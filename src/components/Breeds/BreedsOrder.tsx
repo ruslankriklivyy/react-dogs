@@ -70,7 +70,7 @@ const BreedsOrder: React.FC<IBreedsOrder> = ({
               <button onClick={() => setCurrentBreed && setCurrentBreed('All breeds')}>
                 {type}
               </button>
-              {items?.map((item: any) => (
+              {items?.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => onSelectCurrentBreed && onSelectCurrentBreed(item.name, item.id)}>

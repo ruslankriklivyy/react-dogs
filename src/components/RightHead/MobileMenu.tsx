@@ -50,7 +50,7 @@ const MobileMenu = () => {
           </button>
           <nav className="navigation">
             <ul className="menu">
-              {filterStore.menuCategories.map((item: any, index: number) => (
+              {filterStore.menuCategories.map((item, index: number) => (
                 <Categories key={index} closeMenu={closeMenu} {...item} />
               ))}
             </ul>
