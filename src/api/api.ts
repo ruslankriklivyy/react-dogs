@@ -9,7 +9,10 @@ const instance = axios.create({
 });
 
 export const fetchDogsFromApi = (breedId: number | null): Promise<IDogsImages[]> => {
-  return instance.get(`images/search?breed_id=${breedId}`).then(({ data }) => data);
+  return instance
+    .get(`images/search?breed_id=${breedId}`)
+    .then(({ data }) => data)
+    .catch((err) => alert(err));
 };
 
 export const fetchBreedsFromApi = (
@@ -27,15 +30,22 @@ export const fetchBreedsFromApi = (
           : `${searchQuery !== '' ? '&' : '?'}order=${order.toUpperCase()}`
       }${breed !== 'All breeds' ? '' : `&limit=${limit}`}&page=${currentPage}`,
     )
-    .then(({ data }) => data);
+    .then(({ data }) => data)
+    .catch((err) => alert(err));
 };
 
 export const fetchSortBreedsFromApi = (): Promise<IBreeds[]> => {
-  return instance.get(`breeds?limit=10`).then(({ data }) => data);
+  return instance
+    .get(`breeds?limit=10`)
+    .then(({ data }) => data)
+    .catch((err) => alert(err));
 };
 
 export const fetchOneDogFromApi = (dogId: number | null): Promise<IDogsImages[]> => {
-  return instance.get(`images/search?breed_id=${dogId}`).then(({ data }) => data);
+  return instance
+    .get(`images/search?breed_id=${dogId}`)
+    .then(({ data }) => data)
+    .catch((err) => alert(err));
 };
 
 export const fetchGalleryFromApi = (
@@ -51,7 +61,8 @@ export const fetchGalleryFromApi = (
         order !== 'Random' ? `&order=${order}` : ''
       }${currentBreedId ? `&breed_id=${currentBreedId}` : ''}&page=${currentPage}`,
     )
-    .then(({ data }) => data);
+    .then(({ data }) => data)
+    .catch((err) => alert(err));
 };
 
 export const sendDogImageFromApi = (image: any) => {
@@ -60,14 +71,17 @@ export const sendDogImageFromApi = (image: any) => {
       file: image,
       sub_id: 'ruslanK22',
     })
-    .then(({ data }) => data);
+    .then(({ data }) => data)
+    .catch((err) => alert(err));
 };
 
 export const addToFavoritesFromApi = (imageId: string) => {
-  return instance.post('favourites', {
-    image_id: imageId,
-    sub_id: 'ruslanK22',
-  });
+  return instance
+    .post('favourites', {
+      image_id: imageId,
+      sub_id: 'ruslanK22',
+    })
+    .catch((err) => alert(err));
 };
 
 export const fetchFavoritesImagesFromApi = (
@@ -75,13 +89,20 @@ export const fetchFavoritesImagesFromApi = (
 ): Promise<IFavoritesImages[]> => {
   return instance
     .get(`favourites?sub_id=ruslanK22${currentPage !== undefined ? `&page=${currentPage}` : ''}`)
-    .then(({ data }) => data);
+    .then(({ data }) => data)
+    .catch((err) => alert(err));
 };
 
 export const removeFavoriteImageFromApi = (imageId: string) => {
-  return instance.delete(`favourites/${imageId}`).then(({ data }) => data);
+  return instance
+    .delete(`favourites/${imageId}`)
+    .then(({ data }) => data)
+    .catch((err) => alert(err));
 };
 
 export const fetchCurrentVoteImageFromApi = (currentPage: number): Promise<IDogsImages[]> => {
-  return instance.get(`images/search?page=${currentPage}`).then(({ data }) => data);
+  return instance
+    .get(`images/search?page=${currentPage}`)
+    .then(({ data }) => data)
+    .catch((err) => alert(err));
 };

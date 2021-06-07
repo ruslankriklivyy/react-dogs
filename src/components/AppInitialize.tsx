@@ -4,14 +4,6 @@ import { observer } from 'mobx-react-lite';
 import classNames from 'classnames';
 
 import { Intro, Preloader, ToggleMode } from '../components';
-import // BreedsPage,
-// DislikesPage,
-// DogPage,
-// FavoritesPage,
-// GalleryPage,
-// LikesPage,
-// VotePage,
-'../pages';
 import { useRootStore } from '../store/RootState.Context';
 
 import logoSvg from '../assets/img/logo.svg';
