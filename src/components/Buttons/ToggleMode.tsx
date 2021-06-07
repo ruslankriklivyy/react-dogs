@@ -1,11 +1,11 @@
 import React from 'react';
 import classNames from 'classnames';
-
-import { useRootStore } from '../store/RootState.Context';
-
-import eyeSvg from '../assets/img/eye.svg';
-import closeEyeSvg from '../assets/img/close-eye.svg';
 import { observer } from 'mobx-react-lite';
+
+import { useRootStore } from '../../store/RootState.Context';
+
+import eyeSvg from '../../assets/img/eye.svg';
+import closeEyeSvg from '../../assets/img/close-eye.svg';
 
 const ToggleMode = observer(() => {
   const { dogsStore } = useRootStore();
