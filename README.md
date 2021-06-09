@@ -8,6 +8,7 @@
 
 ### The technologies I used
 - ReactJS
+- TypeScript
 - MobX
 - react-mobx-lite
 - classnames
