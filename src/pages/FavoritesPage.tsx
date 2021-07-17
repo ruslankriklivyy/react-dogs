@@ -1,18 +1,11 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import {
-  BackBtn,
-  Button,
-  EmptyItems,
-  Paginate,
-  Preloader,
-  TopSort,
-  VoteHistory,
-} from '../components';
+import { BackBtn, Button, EmptyItems, Preloader, TopSort, VoteHistory } from '../components';
 import { useRootStore } from '../store/RootState.Context';
 
 const FavoritesPage = observer(() => {
   const { galleryStore } = useRootStore();
+  const [totalDogs, setTotalDogs] = React.useState(5);
 
   const removeImageFromFavorites = (imageId: string) => {
     galleryStore.removeFavoriteImage(imageId);
@@ -34,8 +27,11 @@ const FavoritesPage = observer(() => {
           {!galleryStore.favoritesImages.length && galleryStore.isFetching && <EmptyItems />}
           {galleryStore.isFetching ? (
             <>
-              <div className={`breeds-dogs breeds-dogs--${galleryStore.favoritesImages.length}`}>
-                {galleryStore.favoritesImages.map((item, index) => (
+              <div
+                className={`breeds-dogs breeds-dogs--${
+                  galleryStore.favoritesImages.slice(0, totalDogs).length
+                }`}>
+                {galleryStore.favoritesImages.slice(0, totalDogs).map((item, index) => (
                   <div className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}>
                     <div className="breeds-dogs__box">
                       <div className="breeds-dogs__blockout">
@@ -60,12 +56,9 @@ const FavoritesPage = observer(() => {
                   </div>
                 ))}
               </div>
-              {galleryStore.favoritesImages.length > 5 && (
-                <Paginate
-                  currentPage={galleryStore.favoritesCurrentPage}
-                  setCurrentPage={galleryStore.setFavoritesCurrentPage}
-                />
-              )}
+              <Button onClick={() => setTotalDogs(totalDogs + 5)} className="btn btn--more">
+                More dogs
+              </Button>
               <div className="vote-history">
                 {galleryStore?.favoritesImages.map((item) => (
                   <VoteHistory time={item.created_at} imageId={item.image_id} />
