@@ -98,6 +98,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-self: flex-start;
     &__box {
       position: relative;
       width: 100%;

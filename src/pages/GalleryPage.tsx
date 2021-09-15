@@ -122,10 +122,8 @@ const GalleryPage = observer(() => {
               {galleryStore.isFetching ? (
                 <>
                   <div className={`breeds-dogs breeds-dogs--${galleryStore.limit}`}>
-                    {galleryStore.gallery.map((item, index) => (
-                      <div
-                        key={item.id}
-                        className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}>
+                    {galleryStore.gallery.map((item) => (
+                      <div key={item.id} className="breeds-dogs__item">
                         <div className="breeds-dogs__box">
                           <div className="breeds-dogs__blockout">
                             <button onClick={() => galleryStore.addImageToFavorites(item.id)}>

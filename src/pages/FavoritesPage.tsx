@@ -31,8 +31,8 @@ const FavoritesPage = observer(() => {
                 className={`breeds-dogs breeds-dogs--${
                   galleryStore.favoritesImages.slice(0, totalDogs).length
                 }`}>
-                {galleryStore.favoritesImages.slice(0, totalDogs).map((item, index) => (
-                  <div className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}>
+                {galleryStore.favoritesImages.slice(0, totalDogs).map((item) => (
+                  <div className="breeds-dogs__item">
                     <div className="breeds-dogs__box">
                       <div className="breeds-dogs__blockout">
                         <button onClick={() => removeImageFromFavorites(item.id)}>
