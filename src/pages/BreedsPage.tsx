@@ -91,10 +91,9 @@ const BreedsPage = observer(() => {
         {filterStore.isFetching ? (
           <>
             <div className={`breeds-dogs breeds-dogs--${filterStore.limitBreeds}`}>
-              {filterStore.breeds.map((item, index) => (
+              {filterStore.breeds.map((item) => (
                 <BreedItem
                   key={item.id}
-                  index={index}
                   name={item.name}
                   onSelectDog={onSelectDog}
                   image={item.image}

@@ -5,7 +5,6 @@ import emptyImagePng from '../../assets/img/empty-image.png';
 import { IBreedsImage, IDogsImages } from '../../interfaces/interfaces';
 
 interface IBreedItem {
-  index: number;
   onSelectDog: (id: number) => void;
   image: IBreedsImage;
   dogsPhotos: IDogsImages[];
@@ -13,12 +12,9 @@ interface IBreedItem {
   id: number;
 }
 
-const BreedItem: React.FC<IBreedItem> = ({ index, onSelectDog, image, name, id, dogsPhotos }) => {
+const BreedItem: React.FC<IBreedItem> = ({ onSelectDog, image, name, id, dogsPhotos }) => {
   return (
-    <Link
-      to="/breeds/dog"
-      className={`breeds-dogs__item breeds-dogs__item--${index + 1}`}
-      onClick={() => onSelectDog(id)}>
+    <Link to="/breeds/dog" className="breeds-dogs__item" onClick={() => onSelectDog(id)}>
       <div className="breeds-dogs__box">
         <div className="breeds-dogs__blockout">
           <span>{name}</span>

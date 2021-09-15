@@ -17,14 +17,10 @@
   }
   .breeds-dogs {
     margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    &__box {
-      width: 100%;
-    }
     &__item {
       justify-content: center;
       width: 48%;
+      margin-bottom: 24px;
       height: 250px;
     }
   }
