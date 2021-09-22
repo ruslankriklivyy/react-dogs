@@ -14,7 +14,7 @@ interface IBreedsOrder {
   onSelectLimitBreeds?: (limit: number) => void;
 }
 
-const BreedsOrder: React.FC<IBreedsOrder> = ({
+export const BreedsOrder: React.FC<IBreedsOrder> = ({
   items,
   onSelectCurrentBreed,
   currentBreed,
@@ -123,5 +123,3 @@ const BreedsOrder: React.FC<IBreedsOrder> = ({
     </>
   );
 };
-
-export default BreedsOrder;

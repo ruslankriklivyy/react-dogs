@@ -6,7 +6,7 @@ interface IVoteHistory {
   imageId: string;
 }
 
-const VoteHistory: React.FC<IVoteHistory> = ({ time, imageId }) => {
+export const VoteHistory: React.FC<IVoteHistory> = ({ time, imageId }) => {
   return (
     <div className="vote-history__item">
       <span>{getCreatedTime(time)}</span>
@@ -29,5 +29,3 @@ const VoteHistory: React.FC<IVoteHistory> = ({ time, imageId }) => {
     </div>
   );
 };
-
-export default VoteHistory;

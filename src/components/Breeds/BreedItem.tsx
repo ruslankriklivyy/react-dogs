@@ -12,17 +12,23 @@ interface IBreedItem {
   id: number;
 }
 
-const BreedItem: React.FC<IBreedItem> = ({ onSelectDog, image, name, id, dogsPhotos }) => {
-  return (
-    <Link to="/breeds/dog" className="breeds-dogs__item" onClick={() => onSelectDog(id)}>
-      <div className="breeds-dogs__box">
-        <div className="breeds-dogs__blockout">
-          <span>{name}</span>
+export const BreedItem: React.FC<IBreedItem> = React.memo(
+  function BreedItem({ onSelectDog, image, name, id, dogsPhotos }) {
+    return (
+      <Link to="/breeds/dog" className="breeds-dogs__item" onClick={() => onSelectDog(id)}>
+        <div className="breeds-dogs__box">
+          <div className="breeds-dogs__blockout">
+            <span>{name}</span>
+          </div>
+          <img src={image?.url || dogsPhotos[0]?.url || emptyImagePng} alt="dog jpg" />
         </div>
-        <img src={image?.url || dogsPhotos[0]?.url || emptyImagePng} alt="dog jpg" />
-      </div>
-    </Link>
-  );
-};
-
-export default React.memo(BreedItem);
+      </Link>
+    );
+  },
+  (prevProps, nextProps) => {
+    if (prevProps.id === nextProps.id) {
+      return true;
+    }
+    return false;
+  },
+);

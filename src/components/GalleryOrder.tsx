@@ -1,8 +1,8 @@
-import { observer } from 'mobx-react-lite';
 import React from 'react';
+import { useRootStore } from '../store/RootState.Context';
+import { observer } from 'mobx-react-lite';
 
 import downArrowSvg from '../assets/img/down-arrow.svg';
-import { useRootStore } from '../store/RootState.Context';
 
 interface IGalleryOrder {
   sortBy: string;
@@ -11,7 +11,7 @@ interface IGalleryOrder {
 const orderArr = ['Random', 'Desc', 'Asc'];
 const typeArr = ['Random', 'Gif', 'Image'];
 
-const GalleryOrder: React.FC<IGalleryOrder> = observer(({ sortBy }) => {
+export const GalleryOrder: React.FC<IGalleryOrder> = observer(({ sortBy }) => {
   const { filterStore, galleryStore } = useRootStore();
   const [visibleOrderList, setVisibleOrderList] = React.useState(false);
   const popupRef = React.useRef<HTMLDivElement>(null);
@@ -108,5 +108,3 @@ const GalleryOrder: React.FC<IGalleryOrder> = observer(({ sortBy }) => {
     </div>
   );
 });
-
-export default GalleryOrder;

@@ -11,7 +11,14 @@ interface ICategories {
   closeMenu?: () => void;
 }
 
-const Categories: React.FC<ICategories> = ({ img, link, color, id, title, closeMenu }) => {
+export const Categories: React.FC<ICategories> = React.memo(function Categories({
+  img,
+  link,
+  color,
+  id,
+  title,
+  closeMenu,
+}) {
   let location = useLocation();
 
   return (
@@ -32,6 +39,4 @@ const Categories: React.FC<ICategories> = ({ img, link, color, id, title, closeM
       </Link>
     </li>
   );
-};
-
-export default React.memo(Categories);
+});

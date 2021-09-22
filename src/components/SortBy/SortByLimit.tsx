@@ -1,13 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-
 import { useRootStore } from '../../store/RootState.Context';
 
 import downArrowSvg from '../../assets/img/down-arrow.svg';
 
 const numArr = [5, 10, 15, 20];
 
-const SortByLimit = observer(() => {
+export const SortByLimit = observer(() => {
   const { galleryStore } = useRootStore();
   const [visibleLimit, setVisibleLimit] = React.useState(false);
   const popupRef = React.useRef<HTMLDivElement>(null);
@@ -66,5 +65,3 @@ const SortByLimit = observer(() => {
     </div>
   );
 });
-
-export default SortByLimit;

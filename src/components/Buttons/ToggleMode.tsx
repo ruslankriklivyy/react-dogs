@@ -7,7 +7,7 @@ import { useRootStore } from '../../store/RootState.Context';
 import eyeSvg from '../../assets/img/eye.svg';
 import closeEyeSvg from '../../assets/img/close-eye.svg';
 
-const ToggleMode = observer(() => {
+export const ToggleMode = observer(() => {
   const { dogsStore } = useRootStore();
 
   const onSetMode = () => {
@@ -42,5 +42,3 @@ const ToggleMode = observer(() => {
     </div>
   );
 });
-
-export default ToggleMode;

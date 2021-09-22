@@ -1,10 +1,10 @@
 import React from 'react';
-import { MobileMenu } from '..';
 
-import SearchBreeds from './SearchBreeds';
-import SortAddedImages from './SortAddedImages';
+import { SearchBreeds } from './SearchBreeds';
+import { SortAddedImages } from './SortAddedImages';
+import { MobileMenu } from './MobileMenu';
 
-const TopSort = () => {
+export const TopSort = () => {
   return (
     <>
       <div className="vote__top">
@@ -17,5 +17,3 @@ const TopSort = () => {
     </>
   );
 };
-
-export default React.memo(TopSort);

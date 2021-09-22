@@ -5,7 +5,7 @@ import searchSvg from '../../assets/img/search.svg';
 import { observer } from 'mobx-react-lite';
 import { useHistory } from 'react-router';
 
-const SearchBreeds = observer(() => {
+export const SearchBreeds = observer(() => {
   const [inputValue, setInputValue] = React.useState('');
   const { filterStore } = useRootStore();
   const history = useHistory();
@@ -39,5 +39,3 @@ const SearchBreeds = observer(() => {
     </div>
   );
 });
-
-export default React.memo(SearchBreeds);

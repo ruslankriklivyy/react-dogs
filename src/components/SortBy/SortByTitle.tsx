@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRootStore } from '../../store/RootState.Context';
 
-const SortByTitle = () => {
+export const SortByTitle = () => {
   const { filterStore } = useRootStore();
 
   return (
@@ -39,5 +39,3 @@ const SortByTitle = () => {
     </>
   );
 };
-
-export default SortByTitle;

@@ -1,6 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { BackBtn, Button, Preloader, TopSort } from '../components';
+import { BackBtn } from '../components/Buttons/BackBtn';
+import { Button } from '../components/Buttons/Button';
+import { Preloader } from '../components/Preloader';
+import { TopSort } from '../components/RightHead/TopSort';
 import { useRootStore } from '../store/RootState.Context';
 
 const DogPage = observer(() => {

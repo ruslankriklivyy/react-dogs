@@ -1,8 +1,9 @@
 import React from 'react';
-import { Categories } from '..';
 import { useRootStore } from '../../store/RootState.Context';
 
-const MobileMenu = () => {
+import { Categories } from '../Categories';
+
+export const MobileMenu = () => {
   const { filterStore } = useRootStore();
   const [activeMenu, setActiveMenu] = React.useState(false);
 
@@ -60,5 +61,3 @@ const MobileMenu = () => {
     </div>
   );
 };
-
-export default MobileMenu;

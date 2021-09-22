@@ -1,17 +1,15 @@
 import React from 'react';
-import {
-  BackBtn,
-  BreedItem,
-  BreedsOrder,
-  Button,
-  Paginate,
-  Preloader,
-  SortByTitle,
-  TopSort,
-} from '../components';
 import { useRootStore } from '../store/RootState.Context';
-
 import { observer } from 'mobx-react-lite';
+
+import { TopSort } from '../components/RightHead/TopSort';
+import { BackBtn } from '../components/Buttons/BackBtn';
+import { Button } from '../components/Buttons/Button';
+import { BreedsOrder } from '../components/Breeds/BreedsOrder';
+import { SortByTitle } from '../components/SortBy/SortByTitle';
+import { BreedItem } from '../components/Breeds/BreedItem';
+import { Paginate } from '../components/Paginate';
+import { Preloader } from '../components/Preloader';
 
 const BreedsPage = observer(() => {
   const { filterStore, dogsStore } = useRootStore();

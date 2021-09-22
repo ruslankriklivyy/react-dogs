@@ -2,9 +2,11 @@ import React, { Suspense } from 'react';
 import { Link, Route, Switch, useLocation } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import classNames from 'classnames';
-
-import { Intro, Preloader, ToggleMode } from '../components';
 import { useRootStore } from '../store/RootState.Context';
+
+import { ToggleMode } from './Buttons/ToggleMode';
+import { Intro } from './Intro';
+import { Preloader } from './Preloader';
 
 import logoSvg from '../assets/img/logo.svg';
 
@@ -15,9 +17,9 @@ const FavoritesPage = React.lazy(() => import('../pages/FavoritesPage'));
 const GalleryPage = React.lazy(() => import('../pages/GalleryPage'));
 const LikesPage = React.lazy(() => import('../pages/LikesPage'));
 const VotePage = React.lazy(() => import('../pages/VotePage'));
-const Promo = React.lazy(() => import('../components/Promo'));
+const Promo = React.lazy(() => import('../pages/Promo'));
 
-const AppInitialize = observer(() => {
+export const AppInitialize = observer(() => {
   const location = useLocation();
   const { dogsStore } = useRootStore();
 
@@ -72,5 +74,3 @@ const AppInitialize = observer(() => {
     </div>
   );
 });
-
-export default AppInitialize;

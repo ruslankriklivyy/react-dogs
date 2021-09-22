@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRootStore } from '../../store/RootState.Context';
 
-const SortByBreeds = () => {
+export const SortByBreeds = () => {
   const { filterStore } = useRootStore();
   const [visibleBreeds, setVisibleBreeds] = React.useState(false);
   const popupRef = React.useRef<HTMLDivElement>(null);
@@ -67,5 +67,3 @@ const SortByBreeds = () => {
     </div>
   );
 };
-
-export default SortByBreeds;

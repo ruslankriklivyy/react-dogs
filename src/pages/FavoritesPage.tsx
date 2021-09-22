@@ -1,6 +1,11 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { BackBtn, Button, EmptyItems, Preloader, TopSort, VoteHistory } from '../components';
+import { BackBtn } from '../components/Buttons/BackBtn';
+import { Button } from '../components/Buttons/Button';
+import { EmptyItems } from '../components/EmptyItems';
+import { Preloader } from '../components/Preloader';
+import { TopSort } from '../components/RightHead/TopSort';
+import { VoteHistory } from '../components/VoteHistory';
 import { useRootStore } from '../store/RootState.Context';
 
 const FavoritesPage = observer(() => {

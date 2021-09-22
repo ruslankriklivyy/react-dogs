@@ -1,12 +1,15 @@
 import React from 'react';
-import { Button } from '.';
+import { Button } from './Buttons/Button';
 
 interface IPaginate {
   setCurrentPage: (page: number) => void;
   currentPage: number;
 }
 
-const Paginate: React.FC<IPaginate> = ({ currentPage, setCurrentPage }) => {
+export const Paginate: React.FC<IPaginate> = React.memo(function Paginate({
+  currentPage,
+  setCurrentPage,
+}) {
   const onPlusCurrentPage = () => {
     setCurrentPage(currentPage + 1);
   };
@@ -29,6 +32,4 @@ const Paginate: React.FC<IPaginate> = ({ currentPage, setCurrentPage }) => {
       </Button>
     </div>
   );
-};
-
-export default React.memo(Paginate);
+});

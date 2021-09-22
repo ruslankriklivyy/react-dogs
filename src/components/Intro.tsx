@@ -1,9 +1,9 @@
 import React from 'react';
-
-import { Categories } from '.';
 import { useRootStore } from '../store/RootState.Context';
 
-const Intro = () => {
+import { Categories } from './Categories';
+
+export const Intro = () => {
   const { filterStore } = useRootStore();
 
   return (
@@ -21,5 +21,3 @@ const Intro = () => {
     </div>
   );
 };
-
-export default React.memo(Intro);

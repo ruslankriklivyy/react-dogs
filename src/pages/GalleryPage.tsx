@@ -1,20 +1,18 @@
 import React from 'react';
 import { useDropzone } from 'react-dropzone';
-import {
-  BackBtn,
-  Button,
-  GalleryOrder,
-  Paginate,
-  Preloader,
-  SortByLimit,
-  TopSort,
-} from '../components';
 
 import reloadSvg from '../assets/img/reload.svg';
 import { useRootStore } from '../store/RootState.Context';
 import { observer } from 'mobx-react-lite';
 
 import closeSvg from '../assets/img/close.svg';
+import { TopSort } from '../components/RightHead/TopSort';
+import { BackBtn } from '../components/Buttons/BackBtn';
+import { Button } from '../components/Buttons/Button';
+import { SortByLimit } from '../components/SortBy/SortByLimit';
+import { GalleryOrder } from '../components/GalleryOrder';
+import { Paginate } from '../components/Paginate';
+import { Preloader } from '../components/Preloader';
 
 const galleryOrder = [
   { id: 1, by: 'Order' },

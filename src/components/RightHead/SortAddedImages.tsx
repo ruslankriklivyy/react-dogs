@@ -64,7 +64,7 @@ const iconsArr = [
   },
 ];
 
-const SortAddedImages = () => {
+export const SortAddedImages = () => {
   return (
     <>
       {iconsArr.map((item) => (
@@ -75,5 +75,3 @@ const SortAddedImages = () => {
     </>
   );
 };
-
-export default React.memo(SortAddedImages);

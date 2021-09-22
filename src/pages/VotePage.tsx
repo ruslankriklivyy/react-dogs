@@ -1,8 +1,12 @@
-import { observer } from 'mobx-react-lite';
 import React from 'react';
-
-import { BackBtn, Button, Preloader, TopSort, VoteHistory } from '../components';
+import { observer } from 'mobx-react-lite';
 import { useRootStore } from '../store/RootState.Context';
+
+import { BackBtn } from '../components/Buttons/BackBtn';
+import { Button } from '../components/Buttons/Button';
+import { Preloader } from '../components/Preloader';
+import { TopSort } from '../components/RightHead/TopSort';
+import { VoteHistory } from '../components/VoteHistory';
 
 const iconsArr = [
   {

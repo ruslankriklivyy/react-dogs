@@ -6,7 +6,7 @@ import { useRootStore } from '../store/RootState.Context';
 import loaderGif from '../assets/img/loader.gif';
 import loaderDarkGif from '../assets/img/loader-dark.gif';
 
-const Preloader = observer(() => {
+export const Preloader = observer(() => {
   const { dogsStore } = useRootStore();
 
   return (
@@ -19,5 +19,3 @@ const Preloader = observer(() => {
     </div>
   );
 });
-
-export default Preloader;

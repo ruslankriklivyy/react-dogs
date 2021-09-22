@@ -1,5 +1,9 @@
 import React from 'react';
-import { BackBtn, Button, EmptyItems, TopSort } from '../components';
+
+import { BackBtn } from '../components/Buttons/BackBtn';
+import { Button } from '../components/Buttons/Button';
+import { EmptyItems } from '../components/EmptyItems';
+import { TopSort } from '../components/RightHead/TopSort';
 
 const DissLikesPage = () => {
   return (

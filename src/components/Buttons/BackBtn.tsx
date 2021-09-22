@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 
-const BackBtn = () => {
+export const BackBtn = () => {
   const history = useHistory();
 
   return (
@@ -20,5 +20,3 @@ const BackBtn = () => {
     </button>
   );
 };
-
-export default BackBtn;
