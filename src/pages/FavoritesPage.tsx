@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
+
 import { BackBtn } from '../components/Buttons/BackBtn';
 import { Button } from '../components/Buttons/Button';
 import { EmptyItems } from '../components/EmptyItems';
@@ -10,15 +11,15 @@ import { useRootStore } from '../store/RootState.Context';
 
 const FavoritesPage = observer(() => {
   const { galleryStore } = useRootStore();
-  const [totalDogs, setTotalDogs] = React.useState(5);
+  const [totalDogs, setTotalDogs] = React.useState(6);
 
   const removeImageFromFavorites = (imageId: string) => {
     galleryStore.removeFavoriteImage(imageId);
   };
 
   React.useEffect(() => {
-    galleryStore.getFavoritesImage(galleryStore.favoritesCurrentPage);
-  }, [galleryStore, galleryStore.favoritesCurrentPage]);
+    galleryStore.getFavoritesImage(totalDogs);
+  }, [galleryStore, totalDogs]);
 
   return (
     <>
@@ -32,12 +33,9 @@ const FavoritesPage = observer(() => {
           {!galleryStore.favoritesImages.length && galleryStore.isFetching && <EmptyItems />}
           {galleryStore.isFetching ? (
             <>
-              <div
-                className={`breeds-dogs breeds-dogs--${
-                  galleryStore.favoritesImages.slice(0, totalDogs).length
-                }`}>
-                {galleryStore.favoritesImages.slice(0, totalDogs).map((item) => (
-                  <div className="breeds-dogs__item">
+              <div className="breeds-dogs">
+                {galleryStore.favoritesImages.map((item) => (
+                  <div key={item.id} className="breeds-dogs__item">
                     <div className="breeds-dogs__box">
                       <div className="breeds-dogs__blockout">
                         <button onClick={() => removeImageFromFavorites(item.id)}>
@@ -61,12 +59,14 @@ const FavoritesPage = observer(() => {
                   </div>
                 ))}
               </div>
-              <Button onClick={() => setTotalDogs(totalDogs + 5)} className="btn btn--more">
-                More dogs
-              </Button>
+              {galleryStore.favoritesImages.length >= totalDogs && (
+                <Button onClick={() => setTotalDogs(totalDogs + 6)} className="btn btn--more">
+                  More dogs
+                </Button>
+              )}
               <div className="vote-history">
                 {galleryStore?.favoritesImages.map((item) => (
-                  <VoteHistory time={item.created_at} imageId={item.image_id} />
+                  <VoteHistory key={item.id} time={item.created_at} imageId={item.image_id} />
                 ))}
               </div>
             </>

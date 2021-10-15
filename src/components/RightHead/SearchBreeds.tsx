@@ -1,9 +1,10 @@
 import React from 'react';
-import { useRootStore } from '../../store/RootState.Context';
-
-import searchSvg from '../../assets/img/search.svg';
+import { useDebouncedCallback } from 'use-debounce';
 import { observer } from 'mobx-react-lite';
 import { useHistory } from 'react-router';
+
+import { useRootStore } from '../../store/RootState.Context';
+import searchSvg from '../../assets/img/search.svg';
 
 export const SearchBreeds = observer(() => {
   const [inputValue, setInputValue] = React.useState('');
@@ -14,11 +15,11 @@ export const SearchBreeds = observer(() => {
     history.push('/breeds');
   }
 
-  const onHandleSearchValue = (e: React.KeyboardEvent) => {
+  const onHandleSearchValue = useDebouncedCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       filterStore.setSearchQuery(inputValue);
     }
-  };
+  }, 60);
 
   const onSendInputValue = () => {
     filterStore.setSearchQuery(inputValue);

@@ -80,10 +80,11 @@ export class GalleryStore {
   };
 
   @action
-  getFavoritesImage = (currentPage?: number) => {
+  getFavoritesImage = (limit?: number) => {
     this.isFetching = false;
-    fetchFavoritesImagesFromApi(currentPage)
+    fetchFavoritesImagesFromApi(limit)
       .then((data) => (this.favoritesImages = data))
+      .catch((err) => alert(err))
       .finally(() => (this.isFetching = true));
   };
 

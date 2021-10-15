@@ -85,10 +85,10 @@ export const addToFavoritesFromApi = (imageId: string) => {
 };
 
 export const fetchFavoritesImagesFromApi = (
-  currentPage: number | undefined,
+  limit: number | undefined,
 ): Promise<IFavoritesImages[]> => {
   return instance
-    .get(`favourites?sub_id=ruslanK22${currentPage !== undefined ? `&page=${currentPage}` : ''}`)
+    .get(`favourites?sub_id=ruslanK22${limit !== undefined ? `&limit=${limit}` : ''}`)
     .then(({ data }) => data)
     .catch((err) => alert(err));
 };
